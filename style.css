@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    height: 100vh;
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -11,7 +10,6 @@ body {
     overflow: hidden;
 }
 
-/* 메인 화면 요소 */
 #main-screen {
     display: flex;
     flex-direction: column;
@@ -40,7 +38,8 @@ h1 {
     background-color: white;
     border: none;
     border-radius: 24px;
-    padding: 30px 40px;
+    padding: 30px 20px;
+    width: 140px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     cursor: pointer;
     display: flex;
@@ -49,23 +48,9 @@ h1 {
     transition: transform 0.2s ease;
 }
 
-.breath-button:hover {
-    transform: translateY(-5px);
-}
+.breath-button:hover { transform: translateY(-5px); }
+.breath-button span:last-child { font-size: 18px; font-weight: bold; color: #555; }
 
-.breath-button .material-symbols-rounded {
-    font-size: 50px;
-    color: #5c6bc0;
-    margin-bottom: 12px;
-}
-
-.breath-button span:last-child {
-    font-size: 18px;
-    font-weight: bold;
-    color: #555;
-}
-
-/* 호흡 화면 요소 */
 #breath-screen {
     display: none;
     flex-direction: column;
@@ -75,66 +60,58 @@ h1 {
     transition: opacity 1s ease;
 }
 
-/* 사각형 궤도 */
+/* 궤적 기본 설정 */
 .box-track {
-    width: 240px;
-    height: 240px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    width: 240px; height: 240px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* 궤도를 도는 점 (왼쪽 아래 시작) */
-@keyframes moveAroundBox {
-    0%   { transform: translate(0, 240px); }          /* 시작점: 왼쪽 아래 */
-    25%  { transform: translate(0, 0); }              /* 1단계 (들이쉬기): 왼쪽 위로 이동 */
-    50%  { transform: translate(240px, 0); }          /* 2단계 (참기): 오른쪽 위로 이동 */
-    75%  { transform: translate(240px, 240px); }      /* 3단계 (내쉬기): 오른쪽 아래로 이동 */
-    100% { transform: translate(0, 240px); }          /* 4단계 (참기): 왼쪽 아래로 복귀 */
+/* 도형별 배경 궤적 (자바스크립트로 교체됨) */
+.shape-box { border: 2px solid #ddd; border-radius: 8px; background-image: none; }
+.shape-circle { border: 2px solid #ddd; border-radius: 50%; background-image: none; }
+.shape-triangle {
+    border: none; border-radius: 0;
+    /* 순수 CSS로 역삼각형 선을 그리는 SVG 배경 삽입 */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cpolygon points='120,240 0,0 240,0' fill='none' stroke='%23ddd' stroke-width='2'/%3E%3C/svg%3E");
 }
 
+/* 이동하는 점 */
 .dot {
-    width: 20px;
-    height: 20px;
+    width: 20px; height: 20px;
     background-color: #5c6bc0;
     border-radius: 50%;
     position: absolute;
-    top: -10px;
-    left: -10px;
-    animation: moveAroundBox 16s linear infinite;
+    top: 0; left: 0;
+    margin: -10px 0 0 -10px; /* offset-path에 정확히 중앙을 맞춤 */
+    offset-rotate: 0deg; /* 점 자체가 회전하지 않도록 고정 */
     animation-play-state: paused; 
 }
 
-/* 중앙 지시 텍스트 */
+/* 균등 속도 이동 (사각형, 원형용) */
+@keyframes moveLinear {
+    0% { offset-distance: 0%; }
+    100% { offset-distance: 100%; }
+}
+
+/* 3-7-8 역삼각형 전용 이동 (구간별 물리적 길이에 비례한 속도 계산 적용) */
+@keyframes moveTriangleOffset {
+    0%      { offset-distance: 0%; }
+    16.666% { offset-distance: 34.55%; } /* 3초 시점: 왼쪽 변 끝 */
+    55.555% { offset-distance: 65.45%; } /* 10초 시점: 윗변 끝 */
+    100%    { offset-distance: 100%; }   /* 18초 시점: 원점 복귀 */
+}
+
+/* 지시 텍스트: JS로 직접 opacity를 제어하므로 transition만 둡니다 */
 #instruction-text {
-    font-size: 24px;
-    color: #333;
-    font-weight: bold;
-    opacity: 0; /* 초기 상태를 투명하게 설정 */
-    
-    /* 4초 주기 애니메이션: 16초 궤도 애니메이션과 완벽하게 맞물림 */
-    animation: textPulse 4s linear infinite;
-    animation-play-state: paused; /* 초기에는 일시정지 */
+    font-size: 24px; color: #333; font-weight: bold;
+    opacity: 0; 
+    transition: opacity 0.5s ease;
 }
 
-/* 텍스트 투명도 제어 키프레임 (총 4초 기준) */
-@keyframes textPulse {
-    0%    { opacity: 0; } /* 0.0초 (모서리 출발 시점): 텍스트 교체됨, 투명 상태 */
-    12.5% { opacity: 1; } /* 0.5초: 페이드 인 완료 (선명해짐) */
-    87.5% { opacity: 1; } /* 3.5초: 모서리 도착 0.5초 전, 페이드 아웃 시작 */
-    100%  { opacity: 0; } /* 4.0초 (모서리 도착 시점): 완전히 투명해짐 */
-}
-
-/* 돌아가기 버튼 */
 #btn-back {
-    margin-top: 40px;
-    padding: 10px 20px;
-    background: none;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #555;
+    margin-top: 40px; padding: 10px 20px; background: none;
+    border: 1px solid #ccc; border-radius: 8px; cursor: pointer; color: #555;
 }
