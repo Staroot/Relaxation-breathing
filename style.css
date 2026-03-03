@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f7;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+/* 메인 화면 요소 */
+#main-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: normal;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+
+.breath-button {
+    background-color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.breath-button:hover {
+    transform: translateY(-5px);
+}
+
+.breath-button .material-symbols-rounded {
+    font-size: 50px;
+    color: #5c6bc0;
+    margin-bottom: 12px;
+}
+
+.breath-button span:last-child {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* 호흡 화면 요소 */
+#breath-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* 사각형 궤도 */
+.box-track {
+    width: 240px;
+    height: 240px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 궤도를 도는 점 (왼쪽 아래 시작) */
+@keyframes moveAroundBox {
+    0%   { transform: translate(0, 240px); }          /* 시작점: 왼쪽 아래 */
+    25%  { transform: translate(0, 0); }              /* 1단계 (들이쉬기): 왼쪽 위로 이동 */
+    50%  { transform: translate(240px, 0); }          /* 2단계 (참기): 오른쪽 위로 이동 */
+    75%  { transform: translate(240px, 240px); }      /* 3단계 (내쉬기): 오른쪽 아래로 이동 */
+    100% { transform: translate(0, 240px); }          /* 4단계 (참기): 왼쪽 아래로 복귀 */
+}
+
+.dot {
+    width: 20px;
+    height: 20px;
+    background-color: #5c6bc0;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    animation: moveAroundBox 16s linear infinite;
+    animation-play-state: paused; 
+}
+
+/* 중앙 지시 텍스트 */
+#instruction-text {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+
+/* 돌아가기 버튼 */
+#btn-back {
+    margin-top: 40px;
+    padding: 10px 20px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #555;
+}
