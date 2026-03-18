@@ -304,6 +304,22 @@ body {
 }
 .btn-start:active   { transform:scale(.97); }
 .btn-start:disabled { opacity:.25; cursor:not-allowed; box-shadow:none; }
+/* 중단 버튼 — 진행 중/일시정지 상태에서만 표시 */
+.btn-stop {
+  font-family:var(--font-en); font-weight:300;
+  font-size:.78rem; letter-spacing:.18em; text-transform:uppercase;
+  padding:10px 26px; border-radius:100px;
+  background:none; border:1px solid rgba(107,159,212,.14);
+  color:var(--text-faint); cursor:pointer;
+  transition:border-color .25s, color .25s, transform .12s;
+  display:none; /* JS가 running/paused 시 flex로 전환 */
+}
+.btn-stop:hover  { border-color:rgba(107,159,212,.28); color:var(--text-soft); }
+.btn-stop:active { transform:scale(.97); }
+/* 시작하기/일시정지 + 중단 버튼을 나란히 */
+.action-row {
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
 .kb-hint {
   font-size:.76rem; letter-spacing:.06em; color:var(--text-faint);
   display:flex; gap:12px; align-items:center;
@@ -526,7 +542,10 @@ body {
       </div>
     </div>
     <p class="cycle-progress" id="cycle-progress"></p>
-    <button class="btn-start" id="btn-start">시작하기</button>
+    <div class="action-row">
+      <button class="btn-start" id="btn-start">시작하기</button>
+      <button class="btn-stop"  id="btn-stop">중단하기</button>
+    </div>
     <p class="kb-hint"><kbd>Space</kbd> 시작 / 일시정지 &nbsp; <kbd>Esc</kbd> 뒤로가기</p>
   </div>
 </div>
@@ -594,34 +613,45 @@ const CIRC       = 301.6;
 
 /* ══════════════════════════════
    AUDIO — reverb + pentatonic
+   reverb 생성은 비동기(setTimeout)로
+   메인 스레드 블로킹 없음
 ══════════════════════════════ */
-let audioCtx=null, masterGain=null, reverbNode=null, muted=false;
+let audioCtx=null, masterGain=null, reverbNode=null, reverbReady=null, muted=false;
 
 function initAudio(){
   if(audioCtx){ if(audioCtx.state==='suspended') audioCtx.resume(); return; }
   audioCtx   = new (window.AudioContext||window.webkitAudioContext)();
   masterGain = audioCtx.createGain(); masterGain.gain.value=3;
   masterGain.connect(audioCtx.destination);
-  reverbNode = makeReverb(3.5,2.2); reverbNode.connect(masterGain);
+  /* reverb 버퍼 생성을 다음 태스크로 미룸 — 현재 프레임 블로킹 없음 */
+  reverbReady = new Promise(resolve => {
+    setTimeout(() => {
+      const sr=audioCtx.sampleRate, len=Math.floor(sr*3.5);
+      const buf=audioCtx.createBuffer(2,len,sr);
+      for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);}
+      reverbNode=audioCtx.createConvolver(); reverbNode.buffer=buf;
+      reverbNode.connect(masterGain);
+      resolve();
+    }, 0);
+  });
   if(audioCtx.state==='suspended') audioCtx.resume();
 }
-function makeReverb(dur,decay){
-  const sr=audioCtx.sampleRate, len=Math.floor(sr*dur);
-  const buf=audioCtx.createBuffer(2,len,sr);
-  for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,decay);}
-  const c=audioCtx.createConvolver(); c.buffer=buf; return c;
-}
 function voice(freq,t0,vol,dur){
-  const osc=audioCtx.createOscillator(), env=audioCtx.createGain(),
-        dry=audioCtx.createGain(), wet=audioCtx.createGain();
+  const osc=audioCtx.createOscillator(), env=audioCtx.createGain(), dry=audioCtx.createGain();
   osc.type='sine'; osc.frequency.setValueAtTime(freq,t0);
   env.gain.setValueAtTime(0,t0);
   env.gain.linearRampToValueAtTime(vol,t0+0.12);
   env.gain.exponentialRampToValueAtTime(vol*0.55,t0+dur*0.5);
   env.gain.linearRampToValueAtTime(0.0001,t0+dur);
-  dry.gain.value=0.32; wet.gain.value=0.68;
+  /* dry는 항상 즉시 연결 */
+  dry.gain.value=0.32;
   osc.connect(env); env.connect(dry); dry.connect(masterGain);
-  env.connect(wet); wet.connect(reverbNode);
+  /* wet은 reverb 준비 완료 후 연결 — 준비 전엔 dry만 출력 */
+  reverbReady.then(()=>{
+    if(!reverbNode) return;
+    const wet=audioCtx.createGain(); wet.gain.value=0.68;
+    env.connect(wet); wet.connect(reverbNode);
+  });
   osc.start(t0); osc.stop(t0+dur+0.05);
 }
 const CHORDS={inhale:[196,294,440],hold:[220,330,494],exhale:[130,196,330],hold2:[110,165,247]};
@@ -719,11 +749,14 @@ function initBreath(){
   elBody.style.transition='none'; elBody.style.transform=`scale(${SCALE_REST})`;
   elGlow.style.transition='none'; elGlow.style.opacity='0';
   rippleWrap.style.opacity='0';
+  showStopBtn(false);
   running=false; paused=false; cycle=0; phaseIdx=0;
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   method.phases.forEach(p=>{p._active=false;});
 }
 
+const elBtnStop=$('btn-stop');
+function showStopBtn(on){ elBtnStop.style.display=on?'block':'none'; }
 function setRing(pct){elRing.style.strokeDashoffset=CIRC*(1-Math.min(1,Math.max(0,pct)));}
 function setPhrase(txt,instant){
   if(instant){elPhrase.style.opacity='1';elPhrase.textContent=txt;return;}
@@ -773,6 +806,7 @@ function startBreathing(){
   if(running) return;
   initAudio(); running=true; paused=false;
   elBtn.textContent='일시정지';
+  showStopBtn(true);
   elCycRow.style.opacity='0.35'; elCycRow.style.pointerEvents='none';
   cycle=0; phaseIdx=0; method.phases.forEach(p=>{p._active=false;});
   rafId=requestAnimationFrame(ts=>{phaseStartTs=ts;tickLoop(ts);});
@@ -781,7 +815,6 @@ function pauseBreathing(){
   if(!running) return;
   running=false; paused=true; pausedAt=performance.now();
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
-  /* CSS transition 중단: 현재 computed transform을 그 자리에 고정 */
   const cur=getComputedStyle(elBody).transform;
   elBody.style.transition='none'; elBody.style.transform=cur;
   const curO=getComputedStyle(elGlow).opacity;
@@ -789,6 +822,24 @@ function pauseBreathing(){
   rippleWrap.style.opacity='0';
   elBtn.textContent='재개하기';
   setPhrase('일시정지 — 재개하려면 버튼을 누르세요',true);
+}
+function stopBreathing(){
+  running=false; paused=false;
+  if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+  /* 원 초기 상태로 복귀 */
+  elBody.style.transition='transform 1s ease-out'; elBody.style.transform=`scale(${SCALE_REST})`;
+  elGlow.style.transition='opacity 1s ease-out';   elGlow.style.opacity='0';
+  rippleWrap.style.opacity='0';
+  setRing(0);
+  /* 컨트롤 복원 — 사이클 수 등 다시 선택 가능 */
+  elBtn.textContent='시작하기';
+  showStopBtn(false);
+  elCycRow.style.opacity='1'; elCycRow.style.pointerEvents='auto';
+  elCycProg.textContent='';
+  elCount.textContent='—'; elPhase.textContent='준비';
+  setPhrase('준비가 되면 시작 버튼을 눌러주세요',false);
+  method.phases.forEach(p=>{p._active=false;});
+  cycle=0; phaseIdx=0;
 }
 function resumeBreathing(){
   if(!paused) return;
@@ -813,6 +864,7 @@ function resumeBreathing(){
     elGlow.style.opacity   ='0.04';
   }
   elBtn.textContent='일시정지';
+  showStopBtn(true);
   rafId=requestAnimationFrame(tickLoop);
 }
 
@@ -861,6 +913,7 @@ function finishBreathing(){
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   rippleWrap.style.opacity='0'; setRing(1);
   elCount.textContent = '0';
+  elPhase.textContent = '완료';
   setTimeout(() => { elCount.textContent = '✓'; }, 400);
   setPhrase('모두 마쳤습니다. 수고하셨어요',false);
   elBody.style.transition=`transform 1.8s ease-out`;
@@ -886,6 +939,7 @@ elBtn.addEventListener('click',()=>{
   else if(running)      pauseBreathing();
   else                  resumeBreathing();
 });
+elBtnStop.addEventListener('click', stopBreathing);
 $('btn-back').addEventListener('click',()=>{
   running=false;paused=false;if(rafId)cancelAnimationFrame(rafId);showScreen('screen-intro');
 });
