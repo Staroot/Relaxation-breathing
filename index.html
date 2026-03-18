@@ -835,7 +835,10 @@ function tickLoop(ts){
   const t=Math.min((ts-phaseStartTs)/(phase.dur*1000),1);
 
   /* 카운트다운 */
-  const rem = Math.ceil(phase.dur * (1 - t));
+  if (t < 1) {
+    const rem = Math.max(1, Math.ceil(phase.dur * (1 - t)));
+    if (elCount.textContent !== String(rem)) elCount.textContent = rem;
+  }
 
   /* 진행 링 */
   setRing((cycle*method.phases.length+phaseIdx+t)/(userCycles*method.phases.length));
@@ -855,8 +858,8 @@ function finishBreathing(){
   running=false; paused=false;
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   rippleWrap.style.opacity='0'; setRing(1);
-  //elCount.textContent = '0';
-  //setTimeout(() => { elCount.textContent = '✓'; }, 400);
+  elCount.textContent = '0';
+  setTimeout(() => { elCount.textContent = '✓'; }, 400);
   setPhrase('모두 마쳤습니다. 수고하셨어요',false);
   elBody.style.transition=`transform 1.8s ease-out`;
   elBody.style.transform =`scale(${SCALE_REST})`;
