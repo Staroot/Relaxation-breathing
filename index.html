@@ -835,10 +835,7 @@ function tickLoop(ts){
   const t=Math.min((ts-phaseStartTs)/(phase.dur*1000),1);
 
   /* 카운트다운 */
-  if (t < 1) {
-    const rem = Math.max(1, Math.ceil(phase.dur * (1 - t)));
-    if (elCount.textContent !== String(rem)) elCount.textContent = rem;
-  }
+  const rem = Math.ceil(phase.dur * (1 - t));
 
   /* 진행 링 */
   setRing((cycle*method.phases.length+phaseIdx+t)/(userCycles*method.phases.length));
@@ -849,6 +846,9 @@ function tickLoop(ts){
     phase._active=false; phaseIdx++;
     if(phaseIdx>=method.phases.length){phaseIdx=0;cycle++;}
     if(cycle>=userCycles) finishBreathing();
+    elCount.textContent = '0';
+    // 잠깐 0을 보여주고 나서 텍스트 전환
+    setTimeout(() => { elCount.textContent = '✓'; }, 400);
     else rafId=requestAnimationFrame(tickLoop);
   }
 }
