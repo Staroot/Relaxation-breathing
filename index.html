@@ -600,7 +600,7 @@ let audioCtx=null, masterGain=null, reverbNode=null, muted=false;
 function initAudio(){
   if(audioCtx){ if(audioCtx.state==='suspended') audioCtx.resume(); return; }
   audioCtx   = new (window.AudioContext||window.webkitAudioContext)();
-  masterGain = audioCtx.createGain(); masterGain.gain.value=1;
+  masterGain = audioCtx.createGain(); masterGain.gain.value=3;
   masterGain.connect(audioCtx.destination);
   reverbNode = makeReverb(3.5,2.2); reverbNode.connect(masterGain);
   if(audioCtx.state==='suspended') audioCtx.resume();
