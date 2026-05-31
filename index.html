@@ -332,6 +332,10 @@ body {
 .cycle-display::-webkit-outer-spin-button,
 .cycle-display::-webkit-inner-spin-button { -webkit-appearance:none; }
 .cycle-progress { font-size:.84rem; letter-spacing:.1em; color:var(--text-faint); min-height:1.2em; }
+.cycle-total-time {
+  font-size:.76rem; letter-spacing:.06em; color:var(--text-faint);
+  opacity:.65; margin-top:-4px;
+}
 .btn-start {
   font-family:var(--font-en); font-weight:300;
   font-size:.9rem; letter-spacing:.22em; text-transform:uppercase;
@@ -434,6 +438,71 @@ body {
 }
 .btn-home:hover { border-color:rgba(107,159,212,.2); color:var(--text); }
 
+/* ═══════ CUSTOM BREATH SCREEN ═══════ */
+#screen-custom { gap:0; }
+.custom-title {
+  font-family:var(--font-en); font-weight:300;
+  font-size:1.7rem; letter-spacing:.06em;
+  color:rgba(155,180,212,.82); text-align:center; margin-bottom:6px;
+  opacity:0; animation:fadeUp .7s ease .1s forwards;
+}
+.custom-sub {
+  font-size:.86rem; color:var(--text-faint); text-align:center;
+  letter-spacing:.02em; margin-bottom:32px;
+  opacity:0; animation:fadeUp .7s ease .2s forwards;
+}
+.custom-phases {
+  display:flex; flex-direction:column; gap:12px; width:100%; max-width:300px;
+  opacity:0; animation:fadeUp .7s ease .3s forwards;
+}
+.custom-phase-row {
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(107,159,212,.04); border:1px solid rgba(107,159,212,.1);
+  border-radius:14px; padding:12px 16px;
+}
+.custom-phase-label {
+  font-size:.88rem; letter-spacing:.06em; color:var(--text-soft); min-width:60px;
+}
+.custom-phase-label small {
+  display:block; font-size:.72rem; color:var(--text-faint); margin-top:1px; letter-spacing:.03em;
+}
+.custom-stepper {
+  display:flex; align-items:center; gap:0;
+  background:rgba(107,159,212,.06); border:1px solid rgba(107,159,212,.12);
+  border-radius:10px; overflow:hidden;
+}
+.custom-step-btn {
+  width:34px; height:34px; background:none; border:none; cursor:pointer;
+  color:var(--text-soft); font-size:1.1rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s, color .2s;
+}
+.custom-step-btn:hover  { background:rgba(107,159,212,.1); color:var(--accent-hi); }
+.custom-step-btn:active { background:rgba(107,159,212,.18); }
+.custom-step-btn:disabled { opacity:.25; cursor:not-allowed; }
+.custom-step-val {
+  font-family:var(--font-en); font-weight:300;
+  font-size:1rem; letter-spacing:.04em; color:var(--text);
+  min-width:42px; text-align:center;
+}
+.custom-zero-hint { font-size:.7rem; color:var(--text-faint); letter-spacing:.03em; }
+.custom-actions {
+  display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:28px;
+  opacity:0; animation:fadeUp .7s ease .45s forwards;
+}
+.custom-total-time {
+  font-size:.76rem; letter-spacing:.06em; color:var(--text-faint); opacity:.65;
+}
+/* 직접 할래요 링크 */
+.mood-custom-link {
+  margin-top:22px;
+  font-size:.84rem; letter-spacing:.05em; color:var(--text-faint);
+  text-decoration:underline; text-underline-offset:3px;
+  cursor:pointer; background:none; border:none;
+  font-family:var(--font-kr); font-weight:300;
+  transition:color .2s;
+  opacity:0; animation:fadeUp .8s ease 1.7s forwards;
+}
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(14px); }
   to   { opacity:1; transform:translateY(0); }
@@ -474,78 +543,104 @@ body {
   <div class="moods">
 
     <div class="mood-card" role="button" tabindex="0" data-mood="anxious" aria-label="불안해요">
+      <!-- 불안: 눈썹이 올라가고 입이 살짝 열린 긴장된 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="rgba(107,159,212,.55)" stroke-width="1.2"/>
-        <path d="M9.5 13.5 Q12.5 11.2 15.5 13.2" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <path d="M24.5 13.2 Q27.5 11.2 30.5 13.5" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="14.5" cy="17.5" r="1.6" fill="rgba(107,159,212,.7)"/>
-        <circle cx="25.5" cy="17.5" r="1.6" fill="rgba(107,159,212,.7)"/>
-        <path d="M12 27 Q14.5 24.5 17 27 Q19.5 29.5 22 27 Q24.5 24.5 27 27" stroke="rgba(107,159,212,.55)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <!-- 왼쪽 눈썹 — 안쪽이 올라감 -->
+        <path d="M11 13.5 Q13.5 11.5 16 13" stroke="rgba(107,159,212,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <!-- 오른쪽 눈썹 — 안쪽이 올라감 -->
+        <path d="M24 13 Q26.5 11.5 29 13.5" stroke="rgba(107,159,212,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <!-- 눈 — 약간 크게 뜬 -->
+        <ellipse cx="14.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(107,159,212,.7)" stroke-width="1.2" fill="none"/>
+        <circle cx="14.5" cy="18" r="1" fill="rgba(107,159,212,.7)"/>
+        <ellipse cx="25.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(107,159,212,.7)" stroke-width="1.2" fill="none"/>
+        <circle cx="25.5" cy="18" r="1" fill="rgba(107,159,212,.7)"/>
+        <!-- 입 — 살짝 벌어진 긴장된 모양 -->
+        <path d="M15 27 Q17.5 25 20 27 Q22.5 25 25 27" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
       </svg>
       <span class="mood-label">불안해요</span>
     </div>
 
     <div class="mood-card" role="button" tabindex="0" data-mood="panic" aria-label="공황이에요">
+      <!-- 공황: 눈이 크게 벌어지고 입이 벌어진 공포 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="rgba(107,159,212,.55)" stroke-width="1.2"/>
-        <circle cx="14" cy="17" r="3" stroke="rgba(107,159,212,.65)" stroke-width="1.2" fill="none"/>
-        <circle cx="14" cy="17" r="1.1" fill="rgba(107,159,212,.75)"/>
-        <circle cx="26" cy="17" r="3" stroke="rgba(107,159,212,.65)" stroke-width="1.2" fill="none"/>
-        <circle cx="26" cy="17" r="1.1" fill="rgba(107,159,212,.75)"/>
-        <ellipse cx="20" cy="28.5" rx="4" ry="4.5" stroke="rgba(107,159,212,.55)" stroke-width="1.2" fill="none"/>
-        <path d="M4.5 11 L7 13.5M35.5 11 L33 13.5" stroke="rgba(107,159,212,.3)" stroke-width="1" stroke-linecap="round"/>
-        <path d="M3 19 L6 19.5M37 19 L34 19.5" stroke="rgba(107,159,212,.3)" stroke-width="1" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <!-- 눈썹 — 양쪽 다 위로 강하게 올라감 -->
+        <path d="M10.5 12 Q13.5 9.5 16.5 11.5" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M23.5 11.5 Q26.5 9.5 29.5 12" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- 눈 — 크게 벌어진 원형 -->
+        <circle cx="14.5" cy="18" r="3" stroke="rgba(107,159,212,.75)" stroke-width="1.3" fill="none"/>
+        <circle cx="14.5" cy="18" r="1.3" fill="rgba(107,159,212,.8)"/>
+        <circle cx="25.5" cy="18" r="3" stroke="rgba(107,159,212,.75)" stroke-width="1.3" fill="none"/>
+        <circle cx="25.5" cy="18" r="1.3" fill="rgba(107,159,212,.8)"/>
+        <!-- 입 — 크게 벌어진 타원 -->
+        <ellipse cx="20" cy="29" rx="4.5" ry="3.5" stroke="rgba(107,159,212,.65)" stroke-width="1.3" fill="none"/>
       </svg>
       <span class="mood-label">공황이에요</span>
     </div>
 
     <div class="mood-card" role="button" tabindex="0" data-mood="tense" aria-label="긴장돼요">
+      <!-- 긴장: 미간을 찌푸리고 입을 꽉 다문 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="rgba(107,159,212,.55)" stroke-width="1.2"/>
-        <path d="M9.5 12 L15.5 15.5" stroke="rgba(107,159,212,.65)" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M30.5 12 L24.5 15.5" stroke="rgba(107,159,212,.65)" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M11.5 18.5 Q14.5 16.8 17.5 18.5" stroke="rgba(107,159,212,.65)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <path d="M22.5 18.5 Q25.5 16.8 28.5 18.5" stroke="rgba(107,159,212,.65)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="14.5" cy="18.8" r="1.2" fill="rgba(107,159,212,.65)"/>
-        <circle cx="25.5" cy="18.8" r="1.2" fill="rgba(107,159,212,.65)"/>
-        <path d="M14 27.5 L26 27.5" stroke="rgba(107,159,212,.55)" stroke-width="1.4" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <!-- 미간 주름 -->
+        <path d="M17.5 12.5 L19 15" stroke="rgba(107,159,212,.55)" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M22.5 12.5 L21 15" stroke="rgba(107,159,212,.55)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- 눈썹 — 강하게 V자로 찌푸림 -->
+        <path d="M10.5 14.5 Q13.5 12 17 14" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M23 14 Q26.5 12 29.5 14.5" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <!-- 눈 — 약간 좁게 뜬 -->
+        <path d="M11.5 19.5 Q14.5 17.5 17.5 19.5" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <path d="M22.5 19.5 Q25.5 17.5 28.5 19.5" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <!-- 입 — 꽉 다문 일자 -->
+        <line x1="15" y1="28" x2="25" y2="28" stroke="rgba(107,159,212,.6)" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
       <span class="mood-label">긴장돼요</span>
     </div>
 
     <div class="mood-card" role="button" tabindex="0" data-mood="sad" aria-label="우울해요">
+      <!-- 우울: 눈꼬리 처지고 입꼬리 내려간 슬픈 표정 + 눈물 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="rgba(107,159,212,.55)" stroke-width="1.2"/>
-        <path d="M9.5 14.5 Q12.5 13.2 15.5 15" stroke="rgba(107,159,212,.6)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-        <path d="M24.5 15 Q27.5 13.2 30.5 14.5" stroke="rgba(107,159,212,.6)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-        <circle cx="14.5" cy="18" r="1.5" fill="rgba(107,159,212,.7)"/>
-        <circle cx="25.5" cy="18" r="1.5" fill="rgba(107,159,212,.7)"/>
-        <path d="M12.5 20.5 Q14.5 22 16.5 20.5" stroke="rgba(107,159,212,.3)" stroke-width=".9" stroke-linecap="round" fill="none"/>
-        <path d="M23.5 20.5 Q25.5 22 27.5 20.5" stroke="rgba(107,159,212,.3)" stroke-width=".9" stroke-linecap="round" fill="none"/>
-        <path d="M13 28.5 Q20 23 27 28.5" stroke="rgba(107,159,212,.55)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <path d="M25.5 21.5 Q27 24.5 25.5 25.5 Q24 24.5 25.5 21.5" fill="rgba(107,159,212,.25)"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <!-- 눈썹 — 안쪽이 올라가고 바깥쪽 처짐 (슬픔) -->
+        <path d="M11 15 Q13.5 13 16 14.5" stroke="rgba(107,159,212,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M24 14.5 Q26.5 13 29 15" stroke="rgba(107,159,212,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <!-- 눈 — 반달 모양으로 처진 -->
+        <path d="M11.5 19 Q14.5 21.5 17.5 19" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <path d="M22.5 19 Q25.5 21.5 28.5 19" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <!-- 눈물 -->
+        <path d="M16 22 Q15.5 24.5 16.5 25.5 Q17.5 26.5 18 25 Q17.5 23.5 16 22" fill="rgba(107,159,212,.35)"/>
+        <!-- 입꼬리 내려간 슬픈 입 -->
+        <path d="M14 29.5 Q17 27 20 28.5 Q23 27 26 29.5" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
       </svg>
       <span class="mood-label">우울해요</span>
     </div>
 
     <div class="mood-card" role="button" tabindex="0" data-mood="numb" aria-label="멍해요">
+      <!-- 멍함: 초점 없는 눈, 무표정한 얼굴 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="rgba(107,159,212,.55)" stroke-width="1.2"/>
-        <circle cx="14.5" cy="18" r="2.5" stroke="rgba(107,159,212,.5)" stroke-width="1.1" fill="none"/>
-        <circle cx="14.5" cy="18.5" r="1.1" fill="rgba(107,159,212,.65)"/>
-        <path d="M11.8 16.2 Q14.5 15.2 17.2 16.2" stroke="rgba(107,159,212,.65)" stroke-width="1.5" stroke-linecap="round" fill="rgba(9,14,26,1)"/>
-        <circle cx="25.5" cy="18" r="2.5" stroke="rgba(107,159,212,.5)" stroke-width="1.1" fill="none"/>
-        <circle cx="25.5" cy="18.5" r="1.1" fill="rgba(107,159,212,.65)"/>
-        <path d="M22.8 16.2 Q25.5 15.2 28.2 16.2" stroke="rgba(107,159,212,.65)" stroke-width="1.5" stroke-linecap="round" fill="rgba(9,14,26,1)"/>
-        <path d="M15.5 27 L24.5 27" stroke="rgba(107,159,212,.4)" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <!-- 눈썹 — 수평, 표정 없음 -->
+        <line x1="11.5" y1="14" x2="17" y2="14" stroke="rgba(107,159,212,.45)" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="23" y1="14" x2="28.5" y2="14" stroke="rgba(107,159,212,.45)" stroke-width="1.3" stroke-linecap="round"/>
+        <!-- 눈 — 초점이 흐린 동공 (동공이 중심에서 약간 벗어남) -->
+        <circle cx="14.5" cy="19" r="2.8" stroke="rgba(107,159,212,.45)" stroke-width="1.1" fill="none"/>
+        <circle cx="15.2" cy="19.5" r="1.1" fill="rgba(107,159,212,.4)"/>
+        <circle cx="25.5" cy="19" r="2.8" stroke="rgba(107,159,212,.45)" stroke-width="1.1" fill="none"/>
+        <circle cx="26.2" cy="19.5" r="1.1" fill="rgba(107,159,212,.4)"/>
+        <!-- 입 — 완전 무표정 일자, 얇게 -->
+        <line x1="15.5" y1="28" x2="24.5" y2="28" stroke="rgba(107,159,212,.4)" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
       <span class="mood-label">멍해요</span>
     </div>
 
   </div>
+  <button class="mood-custom-link" id="btn-custom-link">직접 할래요</button>
 </div>
-
-<!-- BREATH -->
 <div class="screen hidden" id="screen-breath">
   <button class="breath-back" id="btn-back">← 돌아가기</button>
 
@@ -584,10 +679,11 @@ body {
       <div class="cycle-stepper">
         <button class="step-btn" id="btn-dec">−</button>
         <div class="cycle-divider"></div>
-        <input class="cycle-display" id="cycle-input" type="number" value="4" min="1" max="10"/>
+        <input class="cycle-display" id="cycle-input" type="number" value="4" min="1" max="20"/>
         <div class="cycle-divider"></div>
         <button class="step-btn" id="btn-inc">+</button>
       </div>
+      <p class="cycle-total-time" id="cycle-total-time"></p>
     </div>
     <p class="cycle-progress" id="cycle-progress"></p>
     <div class="action-row">
@@ -595,6 +691,66 @@ body {
       <button class="btn-stop"  id="btn-stop">중단하기</button>
     </div>
     <p class="kb-hint"><kbd>Space</kbd> 시작 / 일시정지 &nbsp; <kbd>Esc</kbd> 뒤로가기</p>
+  </div>
+</div>
+
+<!-- CUSTOM -->
+<div class="screen hidden" id="screen-custom">
+  <button class="breath-back" id="btn-custom-back">← 돌아가기</button>
+  <h2 class="custom-title">직접 설정하기</h2>
+  <p class="custom-sub">각 단계의 시간을 설정하고 바로 시작하세요</p>
+  <div class="custom-phases">
+
+    <div class="custom-phase-row">
+      <div class="custom-phase-label">들이쉬기<small>inhale</small></div>
+      <div class="custom-stepper">
+        <button class="custom-step-btn" id="c-inhale-dec">−</button>
+        <span class="custom-step-val" id="c-inhale-val">4</span>
+        <button class="custom-step-btn" id="c-inhale-inc">+</button>
+      </div>
+    </div>
+
+    <div class="custom-phase-row">
+      <div class="custom-phase-label">참기 <small>hold after inhale</small></div>
+      <div class="custom-stepper">
+        <button class="custom-step-btn" id="c-hold1-dec">−</button>
+        <span class="custom-step-val" id="c-hold1-val"><span class="custom-zero-hint">0</span></span>
+        <button class="custom-step-btn" id="c-hold1-inc">+</button>
+      </div>
+    </div>
+
+    <div class="custom-phase-row">
+      <div class="custom-phase-label">내쉬기<small>exhale</small></div>
+      <div class="custom-stepper">
+        <button class="custom-step-btn" id="c-exhale-dec">−</button>
+        <span class="custom-step-val" id="c-exhale-val">6</span>
+        <button class="custom-step-btn" id="c-exhale-inc">+</button>
+      </div>
+    </div>
+
+    <div class="custom-phase-row">
+      <div class="custom-phase-label">참기 <small>hold after exhale</small></div>
+      <div class="custom-stepper">
+        <button class="custom-step-btn" id="c-hold2-dec">−</button>
+        <span class="custom-step-val" id="c-hold2-val"><span class="custom-zero-hint">0</span></span>
+        <button class="custom-step-btn" id="c-hold2-inc">+</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="custom-actions">
+    <p class="custom-total-time" id="custom-total-time"></p>
+    <div class="cycle-row" id="custom-cycle-row">
+      <span class="cycle-label-text">사이클 수</span>
+      <div class="cycle-stepper">
+        <button class="step-btn" id="c-cyc-dec">−</button>
+        <div class="cycle-divider"></div>
+        <input class="cycle-display" id="c-cyc-input" type="number" value="4" min="1" max="20"/>
+        <div class="cycle-divider"></div>
+        <button class="step-btn" id="c-cyc-inc">+</button>
+      </div>
+    </div>
+    <button class="btn-start" id="c-btn-start">시작하기</button>
   </div>
 </div>
 
@@ -623,13 +779,12 @@ const METHODS = {
       {label:'참기',    dur:7,type:'hold',  phrase:'숨을 부드럽게 참아주세요'},
       {label:'내쉬기',  dur:8,type:'exhale',phrase:'입으로 길게, 천천히 내쉬세요'},
     ]},
-  panic:{mood:'공황이에요',name:'Box Breathing',
-    desc:'박스를 그리듯 균등하게 호흡해요.\n지금 이 순간에만 집중해 보세요.',
+  panic:{mood:'공황이에요',name:'4-4-6 Breathing',
+    desc:'짧게 들이쉬고 길게 내쉬어요.\n내쉬는 숨이 길수록 몸이 빠르게 안정돼요.',
     phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 4초, 들이쉬세요'},
-      {label:'참기',    dur:4,type:'hold',  phrase:'잠시 머물러도 괜찮아요'},
-      {label:'내쉬기',  dur:4,type:'exhale',phrase:'천천히, 내보내세요'},
-      {label:'참기',    dur:4,type:'hold2', phrase:'비워진 채로, 잠시'},
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 천천히 들이쉬세요'},
+      {label:'참기',    dur:4,type:'hold',  phrase:'잠깐, 그대로요'},
+      {label:'내쉬기',  dur:6,type:'exhale',phrase:'입으로 길게, 끝까지 내보내세요'},
     ]},
   tense:{mood:'긴장돼요',name:'Box Breathing',
     desc:'어깨 힘을 빼고 시작해 보세요.\n균형 잡힌 호흡이 긴장을 풀어줘요.',
@@ -639,11 +794,12 @@ const METHODS = {
       {label:'내쉬기',  dur:4,type:'exhale',phrase:'긴장을 흘려 보내세요'},
       {label:'참기',    dur:4,type:'hold2', phrase:'비워진 채로, 잠시'},
     ]},
-  sad:{mood:'우울해요',name:'Diaphragm Breathing',
-    desc:'배로 깊게 호흡해요.\n지금 이 감정도 충분히 괜찮아요.',
+  sad:{mood:'우울해요',name:'Activating Breath',
+    desc:'배로 깊게, 리드미컬하게 호흡해요.\n규칙적인 리듬이 무거운 기분을 조금씩 깨워줘요.',
     phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'배를 부풀리며 들이쉬세요'},
-      {label:'내쉬기',  dur:6,type:'exhale',phrase:'길게, 천천히 내보내세요'},
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'배를 부풀리며 깊게 들이쉬세요'},
+      {label:'참기',    dur:2,type:'hold',  phrase:'잠깐 머물러요'},
+      {label:'내쉬기',  dur:4,type:'exhale',phrase:'천천히, 고르게 내보내세요'},
     ]},
   numb:{mood:'멍해요',name:'Physiological Sigh',
     desc:'이중 흡입 후 길게 내쉬는 호흡법이에요.\n멍한 의식을 빠르게 되돌리는 데 효과적이에요.',
@@ -847,10 +1003,29 @@ function showScreen(id){
   const el=$(id); el.classList.remove('hidden'); void el.offsetWidth; el.classList.add('visible');
 }
 
+let method=null, running=false, paused=false;
+let rafId=null, phaseStartTs=0, cycle=0, phaseIdx=0, pausedAt=null;
+
 let userCycles=4;
+function calcTotalSec(phases, cycles){
+  return phases.reduce((s,p)=>s+p.dur, 0) * cycles;
+}
+function fmtTime(sec){
+  if(sec < 60) return `약 ${sec}초`;
+  const m=Math.floor(sec/60), s=sec%60;
+  return s===0 ? `약 ${m}분` : `약 ${m}분 ${s}초`;
+}
+function updateTotalTime(){
+  if(!method) return;
+  const el=$('cycle-total-time');
+  if(!el) return;
+  const total = calcTotalSec(method.phases, userCycles);
+  el.textContent = fmtTime(total);
+}
 function setCycles(n){
-  n=Math.max(1,Math.min(10,n)); userCycles=n; elCycInp.value=n;
-  $('btn-dec').disabled=n<=1; $('btn-inc').disabled=n>=10;
+  n=Math.max(1,Math.min(20,n)); userCycles=n; elCycInp.value=n;
+  $('btn-dec').disabled=n<=1; $('btn-inc').disabled=n>=20;
+  updateTotalTime();
 }
 $('btn-dec').addEventListener('click',()=>setCycles(userCycles-1));
 $('btn-inc').addEventListener('click',()=>setCycles(userCycles+1));
@@ -860,9 +1035,6 @@ elCycInp.addEventListener('keydown',e=>{
   if(e.key==='ArrowDown'){e.preventDefault();setCycles(userCycles-1);}
 });
 setCycles(4);
-
-let method=null, running=false, paused=false;
-let rafId=null, phaseStartTs=0, cycle=0, phaseIdx=0, pausedAt=null;
 
 /* 감정 카드 */
 function handleMoodSelect(){
@@ -893,6 +1065,7 @@ function initBreath(){
   elBtn.textContent='시작하기'; elBtn.disabled=false;
   elCycRow.style.opacity='1'; elCycRow.style.pointerEvents='auto';
   elCycProg.textContent=''; setRing(0);
+  updateTotalTime();
   /* 원 즉시 초기화 */
   elBody.style.transition='none'; elBody.style.transform=`scale(${SCALE_REST})`;
   elGlow.style.transition='none'; elGlow.style.opacity='0';
@@ -1095,6 +1268,104 @@ $('btn-again').addEventListener('click',()=>{initBreath();showScreen('screen-bre
 $('btn-home').addEventListener('click',()=>{
   running=false;paused=false;if(rafId)cancelAnimationFrame(rafId);showScreen('screen-intro');
 });
+/* ══════════════════════════════════════════
+   직접 설정 화면
+══════════════════════════════════════════ */
+const customPhases = {
+  inhale: { min:1, max:15, val:4 },
+  hold1:  { min:0, max:15, val:0 },
+  exhale: { min:1, max:15, val:6 },
+  hold2:  { min:0, max:15, val:0 },
+};
+let customCycles = 4;
+
+function renderCustomVal(key){
+  const p = customPhases[key];
+  const el = $(`c-${key}-val`);
+  if(p.val === 0){
+    el.innerHTML = '<span class="custom-zero-hint">0</span>';
+  } else {
+    el.textContent = p.val;
+  }
+  $(`c-${key}-dec`).disabled = p.val <= p.min;
+  $(`c-${key}-inc`).disabled = p.val >= p.max;
+}
+
+function updateCustomTotalTime(){
+  const cycleSec = [
+    customPhases.inhale.val,
+    customPhases.hold1.val,
+    customPhases.exhale.val,
+    customPhases.hold2.val,
+  ].reduce((a,b)=>a+b, 0);
+  const total = cycleSec * customCycles;
+  $('custom-total-time').textContent = total > 0 ? fmtTime(total) : '';
+}
+
+function setCustomCycles(n){
+  n = Math.max(1, Math.min(20, n));
+  customCycles = n;
+  $('c-cyc-input').value = n;
+  $('c-cyc-dec').disabled = n <= 1;
+  $('c-cyc-inc').disabled = n >= 20;
+  updateCustomTotalTime();
+}
+
+Object.keys(customPhases).forEach(key => {
+  renderCustomVal(key);
+  $(`c-${key}-inc`).addEventListener('click', () => {
+    customPhases[key].val = Math.min(customPhases[key].max, customPhases[key].val + 1);
+    renderCustomVal(key); updateCustomTotalTime();
+  });
+  $(`c-${key}-dec`).addEventListener('click', () => {
+    customPhases[key].val = Math.max(customPhases[key].min, customPhases[key].val - 1);
+    renderCustomVal(key); updateCustomTotalTime();
+  });
+});
+
+$('c-cyc-inc').addEventListener('click', () => setCustomCycles(customCycles + 1));
+$('c-cyc-dec').addEventListener('click', () => setCustomCycles(customCycles - 1));
+$('c-cyc-input').addEventListener('change', () => {
+  const v = parseInt($('c-cyc-input').value);
+  if(!isNaN(v)) setCustomCycles(v);
+});
+
+setCustomCycles(4);
+updateCustomTotalTime();
+
+/* 직접 할래요 버튼 → 커스텀 화면 */
+$('btn-custom-link').addEventListener('click', () => {
+  initAudio();
+  showScreen('screen-custom');
+});
+$('btn-custom-back').addEventListener('click', () => showScreen('screen-intro'));
+
+/* 커스텀 시작 */
+$('c-btn-start').addEventListener('click', () => {
+  const phases = [];
+  if(customPhases.inhale.val > 0)
+    phases.push({label:'들이쉬기', dur:customPhases.inhale.val, type:'inhale', phrase:'코로 천천히 들이쉬세요'});
+  if(customPhases.hold1.val > 0)
+    phases.push({label:'참기',    dur:customPhases.hold1.val,  type:'hold',   phrase:'숨을 부드럽게 참아주세요'});
+  if(customPhases.exhale.val > 0)
+    phases.push({label:'내쉬기',  dur:customPhases.exhale.val, type:'exhale', phrase:'입으로 길게 내쉬세요'});
+  if(customPhases.hold2.val > 0)
+    phases.push({label:'참기',    dur:customPhases.hold2.val,  type:'hold2',  phrase:'비워진 채로, 잠시'});
+  if(phases.length === 0) return;
+
+  method = {
+    mood:'직접 설정',
+    name:'Custom Breathing',
+    desc: phases.map(p=>`${p.label} ${p.dur}초`).join('  ·  '),
+    phases,
+  };
+  userCycles = customCycles;
+  elCycInp.value = customCycles;
+  $('btn-dec').disabled = customCycles <= 1;
+  $('btn-inc').disabled = customCycles >= 20;
+
+  initBreath();
+  showScreen('screen-breath');
+});
+
 </script>
-</body>
-</html>
