@@ -83,15 +83,50 @@ body {
   color:rgba(155,180,212,.35);
 }
 
-.sound-btn {
-  position:fixed; top:24px; right:20px; z-index:10;
-  background:none; border:none; cursor:pointer; padding:6px;
-  color:var(--text-faint); transition:color .25s;
+/* ═══ SOUND PANEL (모든 화면 공통, fixed) ═══ */
+.sound-panel {
+  position:fixed; top:20px; right:18px; z-index:10;
+  display:flex; align-items:center; gap:4px;
+  padding:5px 10px 5px 5px;
+  background:rgba(8,12,20,.55);
+  border:1px solid rgba(100,160,230,.13);
+  border-radius:100px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   opacity:0; animation:fadeUp 1s ease .2s forwards;
-  display:flex; align-items:center;
+  transition:border-color .25s;
 }
-.sound-btn:hover { color:var(--text-soft); }
-.sound-btn svg { width:18px; height:18px; }
+.sound-panel:hover { border-color:rgba(100,160,230,.22); }
+.sound-mute-btn {
+  background:none; border:none; cursor:pointer;
+  padding:4px 5px; display:flex; align-items:center;
+  color:var(--text-faint); transition:color .25s;
+}
+.sound-mute-btn:hover { color:var(--text-soft); }
+.sound-mute-btn svg { width:16px; height:16px; }
+/* 볼륨 슬라이더 */
+.sound-slider {
+  -webkit-appearance:none; appearance:none;
+  width:62px; height:2px;
+  background: linear-gradient(
+    to right,
+    rgba(107,159,212,.7) var(--pct,40%),
+    rgba(100,160,230,.18) var(--pct,40%)
+  );
+  border-radius:2px; outline:none; cursor:pointer;
+  transition:background .1s;
+}
+.sound-slider::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  width:11px; height:11px; border-radius:50%;
+  background:rgba(138,184,240,.85);
+  cursor:pointer; transition:transform .15s, background .15s;
+}
+.sound-slider::-webkit-slider-thumb:hover { transform:scale(1.25); background:var(--accent-hi); }
+.sound-slider::-moz-range-thumb {
+  width:11px; height:11px; border-radius:50%; border:none;
+  background:rgba(138,184,240,.85); cursor:pointer;
+}
 
 /* ═══════ INTRO ═══════ */
 #screen-intro { gap:0; }
@@ -407,17 +442,22 @@ body {
   <span class="brand-name">The Breath</span>
 </div>
 
-<button class="sound-btn" id="sound-btn" aria-label="소리 끄기">
-  <svg id="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-  </svg>
-  <svg id="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-    <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-    <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-  </svg>
-</button>
+<!-- SOUND PANEL — 전체 화면 공통 fixed -->
+<div class="sound-panel" id="sound-panel">
+  <button class="sound-mute-btn" id="sound-btn" aria-label="소리 끄기">
+    <svg id="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+    <svg id="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
+  <input class="sound-slider" id="sound-slider" type="range"
+    min="0" max="1" step="0.01" value="0.4" aria-label="볼륨 조절"/>
+</div>
 
 <!-- INTRO -->
 <div class="screen visible" id="screen-intro">
@@ -617,19 +657,42 @@ const CIRC       = 301.6;
    메인 스레드 블로킹 없음
 ══════════════════════════════ */
 let audioCtx=null, masterGain=null, reverbNode=null, reverbReady=null, muted=false;
+let volume = parseFloat(localStorage.getItem('breathVolume') || '0.4');
 
 function initAudio(){
   if(audioCtx){ if(audioCtx.state==='suspended') audioCtx.resume(); return; }
-  audioCtx   = new (window.AudioContext||window.webkitAudioContext)();
-  masterGain = audioCtx.createGain(); masterGain.gain.value=3;
-  masterGain.connect(audioCtx.destination);
+  audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+
+  /* [수정] DynamicsCompressor — 여러 음이 겹칠 때 클리핑 방지 리미터 역할 */
+  const compressor = audioCtx.createDynamicsCompressor();
+  compressor.threshold.value = -14;
+  compressor.knee.value      = 6;
+  compressor.ratio.value     = 8;
+  compressor.attack.value    = 0.003;
+  compressor.release.value   = 0.25;
+
+  /* masterGain: 저장된 볼륨 적용 (기본 0.4 — 슬라이더로 조절 가능) */
+  masterGain = audioCtx.createGain();
+  masterGain.gain.value = muted ? 0 : volume;
+  masterGain.connect(compressor);
+  compressor.connect(audioCtx.destination);
+
   /* reverb 버퍼 생성을 다음 태스크로 미룸 — 현재 프레임 블로킹 없음 */
   reverbReady = new Promise(resolve => {
     setTimeout(() => {
       const sr=audioCtx.sampleRate, len=Math.floor(sr*3.5);
       const buf=audioCtx.createBuffer(2,len,sr);
-      for(let ch=0;ch<2;ch++){const d=buf.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);}
-      reverbNode=audioCtx.createConvolver(); reverbNode.buffer=buf;
+      /* [수정] RMS 정규화 적용 — 리버브 자체가 신호를 증폭하지 않도록 */
+      for(let ch=0;ch<2;ch++){
+        const d=buf.getChannelData(ch);
+        let sumSq=0;
+        for(let i=0;i<len;i++){d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);sumSq+=d[i]*d[i];}
+        const rms=Math.sqrt(sumSq/len)||1;
+        for(let i=0;i<len;i++) d[i]/=rms*4;
+      }
+      reverbNode=audioCtx.createConvolver();
+      reverbNode.normalize=false; /* RMS 직접 정규화했으므로 WebAudio 자동 정규화 비활성 */
+      reverbNode.buffer=buf;
       reverbNode.connect(masterGain);
       resolve();
     }, 0);
@@ -644,33 +707,72 @@ function voice(freq,t0,vol,dur){
   env.gain.exponentialRampToValueAtTime(vol*0.55,t0+dur*0.5);
   env.gain.linearRampToValueAtTime(0.0001,t0+dur);
   /* dry는 항상 즉시 연결 */
-  dry.gain.value=0.32;
+  dry.gain.value=0.40;
   osc.connect(env); env.connect(dry); dry.connect(masterGain);
-  /* wet은 reverb 준비 완료 후 연결 — 준비 전엔 dry만 출력 */
+  /* [수정] wet은 reverb 준비 완료 후에만 연결, 이미 끝난 음엔 연결 안 함 */
+  const stopAt=t0+dur+0.05;
   reverbReady.then(()=>{
     if(!reverbNode) return;
-    const wet=audioCtx.createGain(); wet.gain.value=0.68;
+    if(audioCtx.currentTime >= stopAt) return;
+    const wet=audioCtx.createGain(); wet.gain.value=0.60;
     env.connect(wet); wet.connect(reverbNode);
   });
-  osc.start(t0); osc.stop(t0+dur+0.05);
+  osc.start(t0); osc.stop(stopAt);
 }
 const CHORDS={inhale:[196,294,440],hold:[220,330,494],exhale:[130,196,330],hold2:[110,165,247]};
 function playTone(type){
   if(muted||!audioCtx) return;
   const now=audioCtx.currentTime;
-  (CHORDS[type]||CHORDS.inhale).forEach((f,i)=>voice(f,now+i*0.07,0.036,1.6));
+  /* [수정] vol: 0.036→0.10 (masterGain 3→1.0 보상, 적정 음량 유지) */
+  (CHORDS[type]||CHORDS.inhale).forEach((f,i)=>voice(f,now+i*0.07,0.10,1.6));
 }
 function playChord(){
   if(muted||!audioCtx) return;
   const now=audioCtx.currentTime;
-  [130,196,294,330,392].forEach((f,i)=>voice(f,now+i*0.11,0.030,3.2));
+  /* [수정] vol: 0.030→0.08 */
+  [130,196,294,330,392].forEach((f,i)=>voice(f,now+i*0.11,0.08,3.2));
 }
+/* ── 사운드 패널 이벤트 ── */
+function applySoundUI(){
+  const on=document.getElementById('icon-on'), off=document.getElementById('icon-off');
+  const btn=document.getElementById('sound-btn');
+  on.style.display  = muted ? 'none' : '';
+  off.style.display = muted ? '' : 'none';
+  btn.setAttribute('aria-label', muted ? '소리 켜기' : '소리 끄기');
+}
+function applyVolSliderUI(val){
+  const sl=document.getElementById('sound-slider');
+  sl.value = val;
+  sl.style.setProperty('--pct', (val*100).toFixed(1)+'%');
+}
+
+/* 뮤트 토글 */
 document.getElementById('sound-btn').addEventListener('click',()=>{
   muted=!muted;
-  document.getElementById('icon-on').style.display =muted?'none':'';
-  document.getElementById('icon-off').style.display=muted?'':'none';
-  document.getElementById('sound-btn').setAttribute('aria-label',muted?'소리 켜기':'소리 끄기');
+  if(audioCtx && masterGain){
+    masterGain.gain.setTargetAtTime(muted ? 0 : volume, audioCtx.currentTime, 0.05);
+  }
+  applySoundUI();
 });
+
+/* 볼륨 슬라이더 */
+document.getElementById('sound-slider').addEventListener('input', e=>{
+  volume = parseFloat(e.target.value);
+  applyVolSliderUI(volume);
+  try{ localStorage.setItem('breathVolume', volume); }catch(_){}
+  if(!muted && audioCtx && masterGain){
+    masterGain.gain.setTargetAtTime(volume, audioCtx.currentTime, 0.02);
+  }
+  /* 슬라이더 조작 시 뮤트 해제 */
+  if(muted && volume > 0){
+    muted=false;
+    if(audioCtx && masterGain) masterGain.gain.setTargetAtTime(volume, audioCtx.currentTime, 0.05);
+    applySoundUI();
+  }
+});
+
+/* 초기 슬라이더 UI 동기화 */
+applyVolSliderUI(volume);
 
 function haptic(ms=22){try{if(navigator.vibrate)navigator.vibrate(ms);}catch(_){}}
 
