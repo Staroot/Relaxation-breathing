@@ -21,24 +21,14 @@ html {
 
 :root {
   color-scheme: only light;
-  --bg:        #080c14;
-  --text:      #9bb4d4;
-  --text-soft: #4e6480;
-  --text-faint:#26344a;
-  --accent:    #6b9fd4;
-  --accent-hi: #8ab8f0;
-  --surface:   rgba(100,160,230,.05);
-  --border:    rgba(100,160,230,.1);
-  --font-en:   'Raleway', sans-serif;
-  --font-kr:   'Noto Sans KR', sans-serif;
 }
 
 html, body {
   width:100%; height:100%; overflow:hidden;
-  background:var(--bg); color:var(--text);
+  background:#080c14; color:#9bb4d4;
 }
 body {
-  font-family:var(--font-kr); font-weight:300;
+  font-family:'Noto Sans KR', sans-serif; font-weight:300;
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
            env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
@@ -49,7 +39,7 @@ body {
     radial-gradient(ellipse 100% 60% at 25% 15%, rgba(25,60,130,.28) 0%, transparent 55%),
     radial-gradient(ellipse 80%  70% at 75% 85%, rgba(15,45,100,.22) 0%, transparent 55%),
     radial-gradient(ellipse 60%  50% at 50% 50%, rgba(10,25,60,.3)   0%, transparent 70%),
-    var(--bg);
+    #080c14;
 }
 .grain {
   position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.022;
@@ -88,7 +78,7 @@ body {
   50%      { transform:scale(1.4); opacity:.9; }
 }
 .brand-name {
-  font-family:var(--font-en); font-weight:300; font-size:1rem;
+  font-family:'Raleway', sans-serif; font-weight:300; font-size:1rem;
   letter-spacing:.42em; text-transform:uppercase;
   color:rgba(155,180,212,.35);
 }
@@ -113,9 +103,9 @@ body {
 .sound-mute-btn {
   background:none; border:none; cursor:pointer;
   padding:4px 5px; display:flex; align-items:center;
-  color:var(--text-faint); transition:color .25s;
+  color:#26344a; transition:color .25s;
 }
-.sound-mute-btn:hover { color:var(--text-soft); }
+.sound-mute-btn:hover { color:#4e6480; }
 .sound-mute-btn svg { width:16px; height:16px; }
 /* 볼륨 슬라이더 */
 .sound-slider {
@@ -140,7 +130,7 @@ body {
   background:rgba(138,184,240,.85);
   cursor:pointer; transition:transform .15s, background .15s;
 }
-.sound-slider::-webkit-slider-thumb:hover { transform:scale(1.25); background:var(--accent-hi); }
+.sound-slider::-webkit-slider-thumb:hover { transform:scale(1.25); background:#8ab8f0; }
 .sound-slider::-moz-range-thumb {
   width:11px; height:11px; border-radius:50%; border:none;
   background:rgba(138,184,240,.85); cursor:pointer;
@@ -150,14 +140,14 @@ body {
 #screen-intro { gap:0; }
 
 .intro-headline {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:2.2rem;
   letter-spacing:.04em; color:rgba(155,180,212,.82);
   text-align:center; line-height:1.3; margin-bottom:10px;
   opacity:0; animation:fadeUp 1s cubic-bezier(.22,1,.36,1) .6s forwards;
 }
 .intro-sub {
-  font-size:.9rem; letter-spacing:.08em; color:var(--text-faint);
+  font-size:.9rem; letter-spacing:.08em; color:#26344a;
   margin-bottom:52px;
   opacity:0; animation:fadeUp .8s ease 1.1s forwards;
 }
@@ -168,7 +158,7 @@ body {
 .mood-card {
   display:flex; flex-direction:column; align-items:center; gap:13px;
   padding:22px 14px 18px; width:106px;
-  background:var(--surface); border:1px solid var(--border);
+  background:rgba(100,160,230,.05); border:1px solid rgba(100,160,230,.1);
   border-radius:20px; cursor:pointer; user-select:none; outline:none;
   transition:background .35s, border-color .35s,
              transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
@@ -186,7 +176,7 @@ body {
 .mood-card svg { width:42px; height:42px; }
 .mood-label {
   font-size:.84rem; letter-spacing:.04em;
-  color:var(--text-soft); text-align:center; line-height:1.4;
+  color:#4e6480; text-align:center; line-height:1.4;
 }
 
 /* ═══════ BREATH SCREEN ═══════ */
@@ -196,11 +186,11 @@ body {
 .breath-back {
   position:fixed; top:26px; left:22px;
   background:none; border:none; cursor:pointer;
-  font-family:var(--font-kr); font-weight:300;
-  font-size:.86rem; letter-spacing:.08em; color:var(--text-faint);
+  font-family:'Noto Sans KR', sans-serif; font-weight:300;
+  font-size:.86rem; letter-spacing:.08em; color:#26344a;
   transition:color .25s; padding:6px;
 }
-.breath-back:hover { color:var(--text-soft); }
+.breath-back:hover { color:#4e6480; }
 
 .breath-header {
   display:flex; flex-direction:column; align-items:center; gap:6px;
@@ -208,16 +198,16 @@ body {
 }
 .breath-mood-tag {
   font-size:.8rem; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--accent); padding:4px 14px;
+  color:#6b9fd4; padding:4px 14px;
   border:1px solid rgba(107,159,212,.2); border-radius:100px;
 }
 .breath-method-name {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:1.7rem; letter-spacing:.06em;
   color:rgba(155,180,212,.82); text-align:center;
 }
 .breath-desc {
-  font-size:.86rem; color:var(--text-faint); text-align:center;
+  font-size:.86rem; color:#26344a; text-align:center;
   max-width:300px; line-height:1.85; letter-spacing:.02em;
   white-space:pre-line;
 }
@@ -290,14 +280,14 @@ body {
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
 }
 .c-count {
-  font-family:var(--font-en); font-weight:200;
+  font-family:'Raleway', sans-serif; font-weight:200;
   font-size:3.4rem;
   color:rgba(155,180,212,.92); line-height:1;
   letter-spacing:-.02em;
 }
 .c-phase {
   font-size:.84rem; letter-spacing:.22em; text-transform:uppercase;
-  color:var(--accent); font-weight:300;
+  color:#6b9fd4; font-weight:300;
 }
 
 .breath-phrase {
@@ -315,7 +305,7 @@ body {
 .cycle-row { display:flex; flex-direction:column; align-items:center; gap:8px; }
 .cycle-label-text {
   font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--text-faint);
+  color:#26344a;
 }
 .cycle-stepper {
   display:flex; align-items:center;
@@ -324,30 +314,30 @@ body {
 }
 .step-btn {
   width:40px; height:38px; background:none; border:none; cursor:pointer;
-  color:var(--text-soft); font-size:1.2rem; font-family:var(--font-en); font-weight:300;
+  color:#4e6480; font-size:1.2rem; font-family:'Raleway', sans-serif; font-weight:300;
   transition:background .2s, color .2s;
   display:flex; align-items:center; justify-content:center;
 }
-.step-btn:hover  { background:rgba(107,159,212,.1); color:var(--accent-hi); }
+.step-btn:hover  { background:rgba(107,159,212,.1); color:#8ab8f0; }
 .step-btn:active { background:rgba(107,159,212,.18); }
 .step-btn:disabled { opacity:.3; cursor:not-allowed; }
 .cycle-divider { width:1px; height:24px; background:rgba(107,159,212,.12); }
 .cycle-display {
   min-width:54px; text-align:center;
-  font-family:var(--font-en); font-weight:300;
-  font-size:1.1rem; letter-spacing:.06em; color:var(--text);
+  font-family:'Raleway', sans-serif; font-weight:300;
+  font-size:1.1rem; letter-spacing:.06em; color:#9bb4d4;
   cursor:text; padding:0 4px;
   background:none; border:none; outline:none; -moz-appearance:textfield;
 }
 .cycle-display::-webkit-outer-spin-button,
 .cycle-display::-webkit-inner-spin-button { -webkit-appearance:none; }
-.cycle-progress { font-size:.84rem; letter-spacing:.1em; color:var(--text-faint); min-height:1.2em; }
+.cycle-progress { font-size:.84rem; letter-spacing:.1em; color:#26344a; min-height:1.2em; }
 .cycle-total-time {
-  font-size:.76rem; letter-spacing:.06em; color:var(--text-faint);
+  font-size:.76rem; letter-spacing:.06em; color:#26344a;
   opacity:.65; margin-top:-4px;
 }
 .btn-start {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.22em; text-transform:uppercase;
   padding:14px 52px; border-radius:100px;
   background:rgba(107,159,212,.08); border:1px solid rgba(107,159,212,.25);
@@ -357,56 +347,56 @@ body {
 .btn-start:hover {
   background:rgba(107,159,212,.15);
   box-shadow:0 0 36px rgba(107,159,212,.12);
-  color:var(--accent-hi);
+  color:#8ab8f0;
 }
 .btn-start:active   { transform:scale(.97); }
 .btn-start:disabled { opacity:.25; cursor:not-allowed; box-shadow:none; }
 /* 중단 버튼 — 진행 중/일시정지 상태에서만 표시 */
 .btn-stop {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.78rem; letter-spacing:.18em; text-transform:uppercase;
   padding:10px 26px; border-radius:100px;
   background:none; border:1px solid rgba(107,159,212,.14);
-  color:var(--text-faint); cursor:pointer;
+  color:#26344a; cursor:pointer;
   transition:border-color .25s, color .25s, transform .12s;
   display:none; /* JS가 running/paused 시 flex로 전환 */
 }
-.btn-stop:hover  { border-color:rgba(107,159,212,.28); color:var(--text-soft); }
+.btn-stop:hover  { border-color:rgba(107,159,212,.28); color:#4e6480; }
 .btn-stop:active { transform:scale(.97); }
 /* 시작하기/일시정지 + 중단 버튼을 나란히 */
 .action-row {
   display:flex; flex-direction:column; align-items:center; gap:10px;
 }
 .kb-hint {
-  font-size:.76rem; letter-spacing:.06em; color:var(--text-faint);
+  font-size:.76rem; letter-spacing:.06em; color:#26344a;
   display:flex; gap:12px; align-items:center;
 }
 .kb-hint kbd {
-  font-family:var(--font-en); font-size:.68rem;
-  padding:2px 6px; border:1px solid var(--text-faint);
-  border-radius:3px; color:var(--text-faint);
+  font-family:'Raleway', sans-serif; font-size:.68rem;
+  padding:2px 6px; border:1px solid #26344a;
+  border-radius:3px; color:#26344a;
   display:inline-block; line-height:1.4;
 }
 
 /* ═══════ DONE ═══════ */
 #screen-done { gap:18px; }
 .done-glyph {
-  font-family:var(--font-en); font-weight:200;
+  font-family:'Raleway', sans-serif; font-weight:200;
   font-size:3.4rem; color:rgba(107,159,212,.4); line-height:1;
   opacity:0; animation:fadeUp .8s ease .2s forwards;
 }
 .done-title {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:2.4rem; letter-spacing:.08em;
   color:rgba(155,180,212,.82); text-align:center;
   opacity:0; animation:fadeUp .9s ease .4s forwards;
 }
 .done-hr {
-  width:24px; height:1px; background:var(--text-faint);
+  width:24px; height:1px; background:#26344a;
   opacity:0; animation:fadeUp .5s ease .7s forwards;
 }
 .done-sub {
-  font-size:.9rem; letter-spacing:.04em; color:var(--text-faint);
+  font-size:.9rem; letter-spacing:.04em; color:#26344a;
   text-align:center; max-width:280px; line-height:1.9;
   opacity:0; animation:fadeUp .8s ease .85s forwards;
 }
@@ -416,23 +406,23 @@ body {
 }
 .done-stat {
   display:flex; flex-direction:column; align-items:center; gap:5px;
-  padding:14px 24px; background:var(--surface); border:1px solid var(--border);
+  padding:14px 24px; background:rgba(100,160,230,.05); border:1px solid rgba(100,160,230,.1);
   border-radius:16px;
 }
 .done-stat-val {
-  font-family:var(--font-en); font-weight:200;
+  font-family:'Raleway', sans-serif; font-weight:200;
   font-size:2rem; color:rgba(155,180,212,.82); line-height:1;
 }
 .done-stat-lbl {
   font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--text-faint);
+  color:#26344a;
 }
 .done-btns {
   display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
   opacity:0; animation:fadeUp .8s ease 1.1s forwards;
 }
 .btn-again {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.18em; text-transform:uppercase;
   padding:12px 32px; border-radius:100px;
   background:rgba(107,159,212,.08); border:1px solid rgba(107,159,212,.22);
@@ -440,24 +430,24 @@ body {
 }
 .btn-again:hover { background:rgba(107,159,212,.15); }
 .btn-home {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.18em; text-transform:uppercase;
   padding:12px 32px; border-radius:100px;
-  background:none; border:1px solid var(--border);
-  color:var(--text-soft); cursor:pointer; transition:border-color .25s, color .25s;
+  background:none; border:1px solid rgba(100,160,230,.1);
+  color:#4e6480; cursor:pointer; transition:border-color .25s, color .25s;
 }
-.btn-home:hover { border-color:rgba(107,159,212,.2); color:var(--text); }
+.btn-home:hover { border-color:rgba(107,159,212,.2); color:#9bb4d4; }
 
 /* ═══════ CUSTOM BREATH SCREEN ═══════ */
 #screen-custom { gap:0; }
 .custom-title {
-  font-family:var(--font-en); font-weight:300;
+  font-family:'Raleway', sans-serif; font-weight:300;
   font-size:1.7rem; letter-spacing:.06em;
   color:rgba(155,180,212,.82); text-align:center; margin-bottom:6px;
   opacity:0; animation:fadeUp .7s ease .1s forwards;
 }
 .custom-sub {
-  font-size:.86rem; color:var(--text-faint); text-align:center;
+  font-size:.86rem; color:#26344a; text-align:center;
   letter-spacing:.02em; margin-bottom:32px;
   opacity:0; animation:fadeUp .7s ease .2s forwards;
 }
@@ -471,10 +461,10 @@ body {
   border-radius:14px; padding:12px 16px;
 }
 .custom-phase-label {
-  font-size:.88rem; letter-spacing:.06em; color:var(--text-soft); min-width:60px;
+  font-size:.88rem; letter-spacing:.06em; color:#4e6480; min-width:60px;
 }
 .custom-phase-label small {
-  display:block; font-size:.72rem; color:var(--text-faint); margin-top:1px; letter-spacing:.03em;
+  display:block; font-size:.72rem; color:#26344a; margin-top:1px; letter-spacing:.03em;
 }
 .custom-stepper {
   display:flex; align-items:center; gap:0;
@@ -483,33 +473,33 @@ body {
 }
 .custom-step-btn {
   width:34px; height:34px; background:none; border:none; cursor:pointer;
-  color:var(--text-soft); font-size:1.1rem;
+  color:#4e6480; font-size:1.1rem;
   display:flex; align-items:center; justify-content:center;
   transition:background .2s, color .2s;
 }
-.custom-step-btn:hover  { background:rgba(107,159,212,.1); color:var(--accent-hi); }
+.custom-step-btn:hover  { background:rgba(107,159,212,.1); color:#8ab8f0; }
 .custom-step-btn:active { background:rgba(107,159,212,.18); }
 .custom-step-btn:disabled { opacity:.25; cursor:not-allowed; }
 .custom-step-val {
-  font-family:var(--font-en); font-weight:300;
-  font-size:1rem; letter-spacing:.04em; color:var(--text);
+  font-family:'Raleway', sans-serif; font-weight:300;
+  font-size:1rem; letter-spacing:.04em; color:#9bb4d4;
   min-width:42px; text-align:center;
 }
-.custom-zero-hint { font-size:.7rem; color:var(--text-faint); letter-spacing:.03em; }
+.custom-zero-hint { font-size:.7rem; color:#26344a; letter-spacing:.03em; }
 .custom-actions {
   display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:28px;
   opacity:0; animation:fadeUp .7s ease .45s forwards;
 }
 .custom-total-time {
-  font-size:.76rem; letter-spacing:.06em; color:var(--text-faint); opacity:.65;
+  font-size:.76rem; letter-spacing:.06em; color:#26344a; opacity:.65;
 }
 /* 직접 할래요 링크 */
 .mood-custom-link {
   margin-top:22px;
-  font-size:.84rem; letter-spacing:.05em; color:var(--text-faint);
+  font-size:.84rem; letter-spacing:.05em; color:#26344a;
   text-decoration:underline; text-underline-offset:3px;
   cursor:pointer; background:none; border:none;
-  font-family:var(--font-kr); font-weight:300;
+  font-family:'Noto Sans KR', sans-serif; font-weight:300;
   transition:color .2s;
   opacity:0; animation:fadeUp .8s ease 1.7s forwards;
 }
@@ -782,44 +772,54 @@ body {
    METHODS
 ══════════════════════════════ */
 const METHODS = {
-  anxious:{mood:'불안해요',name:'4-7-8 Breathing',
-    desc:'불안을 가라앉히는 데 효과적인 호흡법이에요.\n숫자를 세며 천천히 따라해 보세요.',
-    phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 천천히 들이쉬세요'},
-      {label:'참기',    dur:7,type:'hold',  phrase:'숨을 부드럽게 참아주세요'},
-      {label:'내쉬기',  dur:8,type:'exhale',phrase:'입으로 길게, 천천히 내쉬세요'},
-    ]},
-  panic:{mood:'공황이에요',name:'4-4-6 Breathing',
-    desc:'짧게 들이쉬고 길게 내쉬어요.\n내쉬는 숨이 길수록 몸이 빠르게 안정돼요.',
-    phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 천천히 들이쉬세요'},
-      {label:'참기',    dur:4,type:'hold',  phrase:'잠깐, 그대로요'},
-      {label:'내쉬기',  dur:6,type:'exhale',phrase:'입으로 길게, 끝까지 내보내세요'},
-    ]},
-  tense:{mood:'긴장돼요',name:'Box Breathing',
-    desc:'어깨 힘을 빼고 시작해 보세요.\n균형 잡힌 호흡이 긴장을 풀어줘요.',
-    phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'어깨를 내리고 들이쉬세요'},
-      {label:'참기',    dur:4,type:'hold',  phrase:'그대로 가만히요'},
-      {label:'내쉬기',  dur:4,type:'exhale',phrase:'긴장을 흘려 보내세요'},
-      {label:'참기',    dur:4,type:'hold2', phrase:'비워진 채로, 잠시'},
-    ]},
-  sad:{mood:'우울해요',name:'Activating Breath',
-    desc:'배로 깊게, 리드미컬하게 호흡해요.\n규칙적인 리듬이 무거운 기분을 조금씩 깨워줘요.',
-    phases:[
-      {label:'들이쉬기',dur:4,type:'inhale',phrase:'배를 부풀리며 깊게 들이쉬세요'},
-      {label:'참기',    dur:2,type:'hold',  phrase:'잠깐 머물러요'},
-      {label:'내쉬기',  dur:4,type:'exhale',phrase:'천천히, 고르게 내보내세요'},
-    ]},
-  numb:{mood:'멍해요',name:'Physiological Sigh',
-    desc:'이중 흡입 후 길게 내쉬는 호흡법이에요.\n멍한 의식을 빠르게 되돌리는 데 효과적이에요.',
-    phases:[
-      {label:'들이쉬기',dur:2,type:'inhale',phrase:'코로 깊게 들이쉬세요'},
-      {label:'한 번 더',dur:1,type:'hold',  phrase:'짧게 한 번 더 들이마셔요'},
-      {label:'내쉬기',  dur:6,type:'exhale',phrase:'입으로 길게, 천천히 내보내세요'},
-    ]},
+  anxious: {
+    mood: '불안해요', name: '4-7-8 Breathing',
+    desc: '불안을 가라앉히는 데 효과적인 호흡법이에요.\n숫자를 세며 천천히 따라해 보세요.',
+    phases: [
+      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '코로 천천히 들이쉬세요' },
+      { label: '참기',     dur: 7, type: 'hold',   phrase: '숨을 부드럽게 참아주세요' },
+      { label: '내쉬기',   dur: 8, type: 'exhale', phrase: '입으로 길게, 천천히 내쉬세요' },
+    ]
+  },
+  panic: {
+    mood: '공황이에요', name: '4-4-6 Breathing',
+    desc: '짧게 들이쉬고 길게 내쉬어요.\n내쉬는 숨이 길수록 몸이 빠르게 안정돼요.',
+    phases: [
+      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '코로 천천히 들이쉬세요' },
+      { label: '참기',     dur: 4, type: 'hold',   phrase: '잠깐 머물러 있어요' },
+      { label: '내쉬기',   dur: 6, type: 'exhale', phrase: '입으로 길게, 끝까지 내보내세요' },
+    ]
+  },
+  tense: {
+    mood: '긴장돼요', name: 'Box Breathing',
+    desc: '어깨 힘을 빼고 시작해 보세요.\n균형 잡힌 호흡이 긴장을 풀어줘요.',
+    phases: [
+      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '어깨를 내리고 들이쉬세요' },
+      { label: '참기', dur: 4, type: 'hold',   phrase: '잠깐 머물러 있어요' },
+      { label: '내쉬기',   dur: 4, type: 'exhale', phrase: '긴장을 흘려 보내세요' },
+      { label: '참기', dur: 4, type: 'hold2',  phrase: '비워진 채로, 기다리세요' },
+    ]
+  },
+  sad: {
+    mood: '우울해요', name: 'Activating Breath',
+    desc: '배로 깊게, 리드미컬하게 호흡해요.\n규칙적인 리듬이 무거운 기분을 조금씩 깨워줘요.',
+    phases: [
+      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '배를 부풀리며 깊게 들이쉬세요' },
+      { label: '참기',     dur: 2, type: 'hold',   phrase: '잠깐 머물러요' },
+      { label: '내쉬기',   dur: 4, type: 'exhale', phrase: '천천히, 고르게 내보내세요' },
+    ]
+  },
+  numb: {
+    mood: '멍해요', name: 'Physiological Sigh',
+    desc: '이중 흡입 후 길게 내쉬는 호흡법이에요.\n멍한 의식을 빠르게 되돌리는 데 효과적이에요.',
+    phases: [
+      { label: '들이쉬기', dur: 2, type: 'inhale', phrase: '코로 깊게 들이쉬세요' },
+      { label: '더 들이쉬기', dur: 1, type: 'hold',  phrase: '짧게 한 번 더 들이마셔요' },
+      { label: '내쉬기',   dur: 6, type: 'exhale', phrase: '입으로 길게, 천천히 내보내세요' },
+    ]
+  },
 };
-
+   
 const SCALE_MAX  = 1.28;
 const SCALE_MIN  = 0.76;
 const SCALE_REST = 1.00;
@@ -851,45 +851,68 @@ function initAudio(){
   masterGain.connect(compressor);
   compressor.connect(audioCtx.destination);
 
-  /* reverb 버퍼 생성을 다음 태스크로 미룸 — 현재 프레임 블로킹 없음 */
-  reverbReady = new Promise(resolve => {
-    setTimeout(() => {
-      const sr=audioCtx.sampleRate, len=Math.floor(sr*3.5);
-      const buf=audioCtx.createBuffer(2,len,sr);
-      /* [수정] RMS 정규화 적용 — 리버브 자체가 신호를 증폭하지 않도록 */
-      for(let ch=0;ch<2;ch++){
-        const d=buf.getChannelData(ch);
-        let sumSq=0;
-        for(let i=0;i<len;i++){d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);sumSq+=d[i]*d[i];}
-        const rms=Math.sqrt(sumSq/len)||1;
-        for(let i=0;i<len;i++) d[i]/=rms*4;
-      }
-      reverbNode=audioCtx.createConvolver();
-      reverbNode.normalize=false; /* RMS 직접 정규화했으므로 WebAudio 자동 정규화 비활성 */
-      reverbNode.buffer=buf;
-      reverbNode.connect(masterGain);
-      resolve();
-    }, 0);
-  });
+  /* reverb IR — 동기 생성으로 voice() 호출 전 항상 준비 완료 */
+  const sr=audioCtx.sampleRate, len=Math.floor(sr*3.5);
+  const buf=audioCtx.createBuffer(2,len,sr);
+  for(let ch=0;ch<2;ch++){
+    const d=buf.getChannelData(ch);
+    let sumSq=0;
+    for(let i=0;i<len;i++){d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.2);sumSq+=d[i]*d[i];}
+    const rms=Math.sqrt(sumSq/len)||1;
+    for(let i=0;i<len;i++) d[i]/=rms*4;
+  }
+  reverbNode=audioCtx.createConvolver();
+  reverbNode.normalize=false;
+  reverbNode.buffer=buf;
+  reverbNode.connect(masterGain);
+  reverbReady=Promise.resolve();
   if(audioCtx.state==='suspended') audioCtx.resume();
 }
-function voice(freq,t0,vol,dur){
-  const osc=audioCtx.createOscillator(), env=audioCtx.createGain(), dry=audioCtx.createGain();
-  osc.type='sine'; osc.frequency.setValueAtTime(freq,t0);
-  env.gain.setValueAtTime(0,t0);
-  env.gain.linearRampToValueAtTime(vol,t0+0.12);
-  env.gain.exponentialRampToValueAtTime(vol*0.55,t0+dur*0.5);
-  env.gain.linearRampToValueAtTime(0.0001,t0+dur);
-  dry.gain.value=0.40;
-  osc.connect(env); env.connect(dry); dry.connect(masterGain);
-  const stopAt=t0+dur+0.05;
-  reverbReady.then(()=>{
-    if(!reverbNode) return;
-    if(audioCtx.currentTime >= stopAt) return;
-    const wet=audioCtx.createGain(); wet.gain.value=0.60;
-    env.connect(wet); wet.connect(reverbNode);
-  });
-  osc.start(t0); osc.stop(stopAt);
+function voice(freq, t0, vol, dur){
+  const osc = audioCtx.createOscillator();
+  const env = audioCtx.createGain();
+
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(freq, t0);
+
+  /* ── ADSR — 틱 노이즈 완전 제거 3원칙 ──────────────────────────
+     1) gain을 절대 0으로 만들지 않는다 (0 → 클릭).
+        osc.start보다 충분히 앞서 0.0001로 시작.
+     2) linearRamp 사용 금지 — 모든 구간 exponentialRamp.
+        exponential은 0에 수렴하지만 실제로 닿지 않아 click-free.
+     3) osc.stop은 gain이 완전히 0에 가까워진 뒤 여유를 두고 호출.
+  ─────────────────────────────────────────────────────────────── */
+  const EPSILON  = 0.00001;
+  const tStart   = t0;
+  const tAttack  = t0 + 0.15;
+  const tDecay   = t0 + dur * 0.45;
+  const tRelease = t0 + dur;
+  const tStop    = t0 + dur + 0.25;   /* release 후 충분한 tail */
+
+  env.gain.setValueAtTime(EPSILON, tStart);
+  env.gain.exponentialRampToValueAtTime(vol,       tAttack);   /* attack  */
+  env.gain.exponentialRampToValueAtTime(vol * 0.4, tDecay);    /* decay   */
+  env.gain.exponentialRampToValueAtTime(EPSILON,   tRelease);  /* release */
+
+  /* dry path */
+  const dry = audioCtx.createGain();
+  dry.gain.value = 0.40;
+  osc.connect(env);
+  env.connect(dry);
+  dry.connect(masterGain);
+
+  /* wet(reverb) path — reverbReady 후 동적 연결 대신
+     reverb가 있으면 즉시 연결, 없으면 그냥 dry만 사용.
+     동적 그래프 변경(then 내부 connect)이 글리치의 주범이었음. */
+  if(reverbNode){
+    const wet = audioCtx.createGain();
+    wet.gain.value = 0.55;
+    env.connect(wet);
+    wet.connect(reverbNode);
+  }
+
+  osc.start(tStart);
+  osc.stop(tStop);
 }
 const CHORDS={inhale:[196,294,440],hold:[220,330,494],exhale:[130,196,330],hold2:[110,165,247]};
 
@@ -1360,7 +1383,7 @@ $('c-btn-start').addEventListener('click', () => {
   if(customPhases.exhale.val > 0)
     phases.push({label:'내쉬기',  dur:customPhases.exhale.val, type:'exhale', phrase:'입으로 길게 내쉬세요'});
   if(customPhases.hold2.val > 0)
-    phases.push({label:'참기',    dur:customPhases.hold2.val,  type:'hold2',  phrase:'비워진 채로, 잠시'});
+    phases.push({label:'참기',    dur:customPhases.hold2.val,  type:'hold2',  phrase:'비워진 채로, 기다리세요'});
   if(phases.length === 0) return;
 
   method = {
