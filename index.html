@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-forced-color-adjust="none">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#080c14">
 <title>The Breath</title>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* 삼성 인터넷 강제 다크모드 차단
+   -webkit-: 구버전 삼성/크롬 대응
+   forced-color-adjust: 윈도우 고대비 모드 등도 차단 */
+html {
+  -webkit-color-adjust: exact !important;
+          color-adjust: exact !important;
+  forced-color-adjust: none !important;
+}
 
 :root {
   color-scheme: only light;
