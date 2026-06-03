@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
 <meta name="color-scheme" content="only light">
-<meta name="theme-color" content="#080c14">
+<meta name="theme-color" content="#0d1520">
 <title>The Breath</title>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
@@ -25,7 +25,7 @@ html {
 
 html, body {
   width:100%; height:100%; overflow:hidden;
-  background:#080c14; color:#9bb4d4;
+  background:#0d1520; color:#adc4df;
 }
 body {
   font-family:'Noto Sans KR', sans-serif; font-weight:300;
@@ -36,10 +36,10 @@ body {
 .bg {
   position:fixed; inset:0; z-index:0;
   background:
-    radial-gradient(ellipse 100% 60% at 25% 15%, rgba(25,60,130,.28) 0%, transparent 55%),
-    radial-gradient(ellipse 80%  70% at 75% 85%, rgba(15,45,100,.22) 0%, transparent 55%),
-    radial-gradient(ellipse 60%  50% at 50% 50%, rgba(10,25,60,.3)   0%, transparent 70%),
-    #080c14;
+    radial-gradient(ellipse 100% 60% at 25% 15%, rgba(30,70,150,.32) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  70% at 75% 85%, rgba(20,55,120,.26) 0%, transparent 55%),
+    radial-gradient(ellipse 60%  50% at 50% 50%, rgba(15,35,80,.30)  0%, transparent 70%),
+    #0d1520;
 }
 .grain {
   position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.022;
@@ -65,12 +65,12 @@ body {
 }
 .brand-mark {
   width:24px; height:24px; border-radius:50%;
-  border:1px solid rgba(107,159,212,.3);
+  border:1px solid rgba(118,168,220,.3);
   display:flex; align-items:center; justify-content:center;
 }
 .brand-mark-inner {
   width:6px; height:6px; border-radius:50%;
-  background:rgba(107,159,212,.5);
+  background:rgba(118,168,220,.5);
   animation:brandPulse 3s ease-in-out infinite;
 }
 @keyframes brandPulse {
@@ -80,7 +80,7 @@ body {
 .brand-name {
   font-family:'Raleway', sans-serif; font-weight:300; font-size:1rem;
   letter-spacing:.42em; text-transform:uppercase;
-  color:rgba(155,180,212,.35);
+  color:rgba(178,202,232,.42);
 }
 
 /* ═══ SOUND PANEL (모든 화면 공통, fixed) ═══ */
@@ -88,8 +88,8 @@ body {
   position:fixed; top:20px; right:18px; z-index:10;
   display:flex; align-items:center; gap:4px;
   padding:5px 5px;
-  background:rgba(8,12,20,.55);
-  border:1px solid rgba(100,160,230,.13);
+  background:rgba(13,21,32,.55);
+  border:1px solid rgba(112,172,235,.13);
   border-radius:100px;
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
@@ -99,13 +99,13 @@ body {
 .sound-panel.vol-open {
   padding:5px 10px 5px 5px;
 }
-.sound-panel:hover { border-color:rgba(100,160,230,.22); }
+.sound-panel:hover { border-color:rgba(112,172,235,.22); }
 .sound-mute-btn {
   background:none; border:none; cursor:pointer;
   padding:4px 5px; display:flex; align-items:center;
-  color:#26344a; transition:color .25s;
+  color:#3a4f6a; transition:color .25s;
 }
-.sound-mute-btn:hover { color:#4e6480; }
+.sound-mute-btn:hover { color:#607a96; }
 .sound-mute-btn svg { width:16px; height:16px; }
 /* 볼륨 슬라이더 */
 .sound-slider {
@@ -113,8 +113,8 @@ body {
   width:62px; height:2px;
   background: linear-gradient(
     to right,
-    rgba(107,159,212,.7) var(--pct,40%),
-    rgba(100,160,230,.18) var(--pct,40%)
+    rgba(118,168,220,.7) var(--pct,40%),
+    rgba(112,172,235,.18) var(--pct,40%)
   );
   border-radius:2px; outline:none; cursor:pointer;
   transition:width .22s ease, opacity .22s ease;
@@ -127,13 +127,13 @@ body {
 .sound-slider::-webkit-slider-thumb {
   -webkit-appearance:none;
   width:11px; height:11px; border-radius:50%;
-  background:rgba(138,184,240,.85);
+  background:rgba(150,194,245,.85);
   cursor:pointer; transition:transform .15s, background .15s;
 }
-.sound-slider::-webkit-slider-thumb:hover { transform:scale(1.25); background:#8ab8f0; }
+.sound-slider::-webkit-slider-thumb:hover { transform:scale(1.25); background:#9ac6f5; }
 .sound-slider::-moz-range-thumb {
   width:11px; height:11px; border-radius:50%; border:none;
-  background:rgba(138,184,240,.85); cursor:pointer;
+  background:rgba(150,194,245,.85); cursor:pointer;
 }
 
 /* ═══════ INTRO ═══════ */
@@ -142,12 +142,12 @@ body {
 .intro-headline {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:2.2rem;
-  letter-spacing:.04em; color:rgba(155,180,212,.82);
+  letter-spacing:.04em; color:rgba(178,202,232,.90);
   text-align:center; line-height:1.3; margin-bottom:10px;
   opacity:0; animation:fadeUp 1s cubic-bezier(.22,1,.36,1) .6s forwards;
 }
 .intro-sub {
-  font-size:.9rem; letter-spacing:.08em; color:#26344a;
+  font-size:.9rem; letter-spacing:.08em; color:#3a4f6a;
   margin-bottom:52px;
   opacity:0; animation:fadeUp .8s ease 1.1s forwards;
 }
@@ -158,25 +158,25 @@ body {
 .mood-card {
   display:flex; flex-direction:column; align-items:center; gap:13px;
   padding:22px 14px 18px; width:106px;
-  background:rgba(100,160,230,.05); border:1px solid rgba(100,160,230,.1);
+  background:rgba(112,172,235,.05); border:1px solid rgba(112,172,235,.1);
   border-radius:20px; cursor:pointer; user-select:none; outline:none;
   transition:background .35s, border-color .35s,
              transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
 }
 .mood-card:hover {
-  background:rgba(107,159,212,.08); border-color:rgba(107,159,212,.28);
+  background:rgba(118,168,220,.08); border-color:rgba(118,168,220,.28);
   transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 0 1px rgba(107,159,212,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 0 1px rgba(118,168,220,.12);
 }
 .mood-card:focus-visible {
-  border-color:rgba(107,159,212,.5);
-  box-shadow:0 0 0 2px rgba(107,159,212,.3);
+  border-color:rgba(118,168,220,.5);
+  box-shadow:0 0 0 2px rgba(118,168,220,.3);
 }
 .mood-card:active { transform:scale(.94); }
 .mood-card svg { width:42px; height:42px; }
 .mood-label {
   font-size:.84rem; letter-spacing:.04em;
-  color:#4e6480; text-align:center; line-height:1.4;
+  color:#607a96; text-align:center; line-height:1.4;
 }
 
 /* ═══════ BREATH SCREEN ═══════ */
@@ -187,10 +187,10 @@ body {
   position:fixed; top:26px; left:22px;
   background:none; border:none; cursor:pointer;
   font-family:'Noto Sans KR', sans-serif; font-weight:300;
-  font-size:.86rem; letter-spacing:.08em; color:#26344a;
+  font-size:.86rem; letter-spacing:.08em; color:#3a4f6a;
   transition:color .25s; padding:6px;
 }
-.breath-back:hover { color:#4e6480; }
+.breath-back:hover { color:#607a96; }
 
 .breath-header {
   display:flex; flex-direction:column; align-items:center; gap:6px;
@@ -198,16 +198,16 @@ body {
 }
 .breath-mood-tag {
   font-size:.8rem; letter-spacing:.18em; text-transform:uppercase;
-  color:#6b9fd4; padding:4px 14px;
-  border:1px solid rgba(107,159,212,.2); border-radius:100px;
+  color:#7aade0; padding:4px 14px;
+  border:1px solid rgba(118,168,220,.2); border-radius:100px;
 }
 .breath-method-name {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:1.7rem; letter-spacing:.06em;
-  color:rgba(155,180,212,.82); text-align:center;
+  color:rgba(178,202,232,.90); text-align:center;
 }
 .breath-desc {
-  font-size:.86rem; color:#26344a; text-align:center;
+  font-size:.86rem; color:#3a4f6a; text-align:center;
   max-width:300px; line-height:1.85; letter-spacing:.02em;
   white-space:pre-line;
 }
@@ -239,24 +239,37 @@ body {
 }
 .ripple {
   position:absolute; inset:0; border-radius:50%;
-  border:1px solid rgba(107,159,212,.42);
-  /* 시작부터 animation running — play/pause 없음 */
+  border:1px solid rgba(118,168,220,.38);
+  box-shadow:0 0 8px 1px rgba(118,168,220,.10), inset 0 0 6px 0px rgba(118,168,220,.08);
   animation:rippleOut 3.6s cubic-bezier(.18,.6,.38,1) infinite;
 }
 .ripple:nth-child(1) { animation-delay:0s; }
 .ripple:nth-child(2) { animation-delay:1.2s; }
 .ripple:nth-child(3) { animation-delay:2.4s; }
 @keyframes rippleOut {
-  0%   { transform:scale(.46); opacity:.5; }
-  100% { transform:scale(1.65); opacity:0; }
+  0%   { transform:scale(.46); opacity:.55; }
+  60%  { opacity:.25; }
+  100% { transform:scale(1.72); opacity:0; }
 }
+
+/* hold micro-pulse — scale 시작점을 현재 크기와 맞춰 끊김 없이 */
+@keyframes holdPulseMax {
+  0%,100% { transform:scale(1.28); box-shadow:0 0 0px  0px rgba(118,168,220,0);   }
+  50%     { transform:scale(1.31); box-shadow:0 0 20px 4px rgba(118,168,220,.10); }
+}
+@keyframes holdPulseMin {
+  0%,100% { transform:scale(0.76); box-shadow:0 0 0px  0px rgba(118,168,220,0);   }
+  50%     { transform:scale(0.79); box-shadow:0 0 14px 3px rgba(118,168,220,.07); }
+}
+.circle-body.hold-pulse-max { animation:holdPulseMax 3.2s ease-in-out infinite; }
+.circle-body.hold-pulse-min { animation:holdPulseMin 3.2s ease-in-out infinite; }
 
 .ring-svg {
   position:absolute; inset:0; width:100%; height:100%;
   transform:rotate(-90deg);
 }
-.ring-bg { stroke:rgba(107,159,212,.07); fill:none; stroke-width:1; }
-.ring-fg { stroke:rgba(107,159,212,.45); fill:none; stroke-width:1.2; stroke-linecap:round; }
+.ring-bg { stroke:rgba(118,168,220,.07); fill:none; stroke-width:1; }
+.ring-fg { stroke:rgba(118,168,220,.45); fill:none; stroke-width:1.2; stroke-linecap:round; }
 
 /* glow — JS가 opacity 값만 세팅, transition은 JS가 동적으로 */
 .circle-glow {
@@ -269,8 +282,8 @@ body {
    내부에 자식 없음 → scale 이 내용물에 영향 없음 */
 .circle-body {
   width:58%; height:58%; border-radius:50%;
-  background:radial-gradient(circle at 38% 32%, #132040, #080f1e);
-  border:1px solid rgba(107,159,212,.15);
+  background:radial-gradient(circle at 38% 32%, #1a2d50, #0d1a2e);
+  border:1px solid rgba(118,168,220,.15);
   position:relative; z-index:2;
 }
 
@@ -282,17 +295,17 @@ body {
 .c-count {
   font-family:'Raleway', sans-serif; font-weight:200;
   font-size:3.4rem;
-  color:rgba(155,180,212,.92); line-height:1;
+  color:rgba(178,202,232,.95); line-height:1;
   letter-spacing:-.02em;
 }
 .c-phase {
   font-size:.84rem; letter-spacing:.22em; text-transform:uppercase;
-  color:#6b9fd4; font-weight:300;
+  color:#7aade0; font-weight:300;
 }
 
 .breath-phrase {
   font-size:1rem; letter-spacing:.05em;
-  font-weight:300; color:rgba(155,180,212,.4); text-align:center;
+  font-weight:300; color:rgba(178,202,232,.48); text-align:center;
   min-height:1.6em; transition:opacity .6s ease;
   opacity:0; animation:fadeUp .7s ease .45s forwards;
 }
@@ -305,49 +318,49 @@ body {
 .cycle-row { display:flex; flex-direction:column; align-items:center; gap:8px; }
 .cycle-label-text {
   font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
-  color:#26344a;
+  color:#3a4f6a;
 }
 .cycle-stepper {
   display:flex; align-items:center;
-  background:rgba(107,159,212,.05); border:1px solid rgba(107,159,212,.12);
+  background:rgba(118,168,220,.05); border:1px solid rgba(118,168,220,.12);
   border-radius:10px; overflow:hidden;
 }
 .step-btn {
   width:40px; height:38px; background:none; border:none; cursor:pointer;
-  color:#4e6480; font-size:1.2rem; font-family:'Raleway', sans-serif; font-weight:300;
+  color:#607a96; font-size:1.2rem; font-family:'Raleway', sans-serif; font-weight:300;
   transition:background .2s, color .2s;
   display:flex; align-items:center; justify-content:center;
 }
-.step-btn:hover  { background:rgba(107,159,212,.1); color:#8ab8f0; }
-.step-btn:active { background:rgba(107,159,212,.18); }
+.step-btn:hover  { background:rgba(118,168,220,.1); color:#9ac6f5; }
+.step-btn:active { background:rgba(118,168,220,.18); }
 .step-btn:disabled { opacity:.3; cursor:not-allowed; }
-.cycle-divider { width:1px; height:24px; background:rgba(107,159,212,.12); }
+.cycle-divider { width:1px; height:24px; background:rgba(118,168,220,.12); }
 .cycle-display {
   min-width:54px; text-align:center;
   font-family:'Raleway', sans-serif; font-weight:300;
-  font-size:1.1rem; letter-spacing:.06em; color:#9bb4d4;
+  font-size:1.1rem; letter-spacing:.06em; color:#adc4df;
   cursor:text; padding:0 4px;
   background:none; border:none; outline:none; -moz-appearance:textfield;
 }
 .cycle-display::-webkit-outer-spin-button,
 .cycle-display::-webkit-inner-spin-button { -webkit-appearance:none; }
-.cycle-progress { font-size:.84rem; letter-spacing:.1em; color:#26344a; min-height:1.2em; }
+.cycle-progress { font-size:.84rem; letter-spacing:.1em; color:#3a4f6a; min-height:1.2em; }
 .cycle-total-time {
-  font-size:.76rem; letter-spacing:.06em; color:#26344a;
+  font-size:.76rem; letter-spacing:.06em; color:#3a4f6a;
   opacity:.65; margin-top:-4px;
 }
 .btn-start {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.22em; text-transform:uppercase;
   padding:14px 52px; border-radius:100px;
-  background:rgba(107,159,212,.08); border:1px solid rgba(107,159,212,.25);
-  color:rgba(138,184,240,.85); cursor:pointer;
+  background:rgba(118,168,220,.08); border:1px solid rgba(118,168,220,.25);
+  color:rgba(150,194,245,.85); cursor:pointer;
   transition:background .3s, box-shadow .3s, color .3s, transform .12s;
 }
 .btn-start:hover {
-  background:rgba(107,159,212,.15);
-  box-shadow:0 0 36px rgba(107,159,212,.12);
-  color:#8ab8f0;
+  background:rgba(118,168,220,.15);
+  box-shadow:0 0 36px rgba(118,168,220,.12);
+  color:#9ac6f5;
 }
 .btn-start:active   { transform:scale(.97); }
 .btn-start:disabled { opacity:.25; cursor:not-allowed; box-shadow:none; }
@@ -356,25 +369,25 @@ body {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.78rem; letter-spacing:.18em; text-transform:uppercase;
   padding:10px 26px; border-radius:100px;
-  background:none; border:1px solid rgba(107,159,212,.14);
-  color:#26344a; cursor:pointer;
+  background:none; border:1px solid rgba(118,168,220,.14);
+  color:#3a4f6a; cursor:pointer;
   transition:border-color .25s, color .25s, transform .12s;
   display:none; /* JS가 running/paused 시 flex로 전환 */
 }
-.btn-stop:hover  { border-color:rgba(107,159,212,.28); color:#4e6480; }
+.btn-stop:hover  { border-color:rgba(118,168,220,.28); color:#607a96; }
 .btn-stop:active { transform:scale(.97); }
 /* 시작하기/일시정지 + 중단 버튼을 나란히 */
 .action-row {
   display:flex; flex-direction:column; align-items:center; gap:10px;
 }
 .kb-hint {
-  font-size:.76rem; letter-spacing:.06em; color:#26344a;
+  font-size:.76rem; letter-spacing:.06em; color:#3a4f6a;
   display:flex; gap:12px; align-items:center;
 }
 .kb-hint kbd {
   font-family:'Raleway', sans-serif; font-size:.68rem;
-  padding:2px 6px; border:1px solid #26344a;
-  border-radius:3px; color:#26344a;
+  padding:2px 6px; border:1px solid #3a4f6a;
+  border-radius:3px; color:#3a4f6a;
   display:inline-block; line-height:1.4;
 }
 
@@ -382,21 +395,21 @@ body {
 #screen-done { gap:18px; }
 .done-glyph {
   font-family:'Raleway', sans-serif; font-weight:200;
-  font-size:3.4rem; color:rgba(107,159,212,.4); line-height:1;
+  font-size:3.4rem; color:rgba(118,168,220,.4); line-height:1;
   opacity:0; animation:fadeUp .8s ease .2s forwards;
 }
 .done-title {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:2.4rem; letter-spacing:.08em;
-  color:rgba(155,180,212,.82); text-align:center;
+  color:rgba(178,202,232,.90); text-align:center;
   opacity:0; animation:fadeUp .9s ease .4s forwards;
 }
 .done-hr {
-  width:24px; height:1px; background:#26344a;
+  width:24px; height:1px; background:#3a4f6a;
   opacity:0; animation:fadeUp .5s ease .7s forwards;
 }
 .done-sub {
-  font-size:.9rem; letter-spacing:.04em; color:#26344a;
+  font-size:.9rem; letter-spacing:.04em; color:#3a4f6a;
   text-align:center; max-width:280px; line-height:1.9;
   opacity:0; animation:fadeUp .8s ease .85s forwards;
 }
@@ -406,16 +419,16 @@ body {
 }
 .done-stat {
   display:flex; flex-direction:column; align-items:center; gap:5px;
-  padding:14px 24px; background:rgba(100,160,230,.05); border:1px solid rgba(100,160,230,.1);
+  padding:14px 24px; background:rgba(112,172,235,.05); border:1px solid rgba(112,172,235,.1);
   border-radius:16px;
 }
 .done-stat-val {
   font-family:'Raleway', sans-serif; font-weight:200;
-  font-size:2rem; color:rgba(155,180,212,.82); line-height:1;
+  font-size:2rem; color:rgba(178,202,232,.90); line-height:1;
 }
 .done-stat-lbl {
   font-size:.76rem; letter-spacing:.14em; text-transform:uppercase;
-  color:#26344a;
+  color:#3a4f6a;
 }
 .done-btns {
   display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
@@ -425,29 +438,29 @@ body {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.18em; text-transform:uppercase;
   padding:12px 32px; border-radius:100px;
-  background:rgba(107,159,212,.08); border:1px solid rgba(107,159,212,.22);
-  color:rgba(138,184,240,.8); cursor:pointer; transition:background .25s;
+  background:rgba(118,168,220,.08); border:1px solid rgba(118,168,220,.22);
+  color:rgba(150,194,245,.8); cursor:pointer; transition:background .25s;
 }
-.btn-again:hover { background:rgba(107,159,212,.15); }
+.btn-again:hover { background:rgba(118,168,220,.15); }
 .btn-home {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:.9rem; letter-spacing:.18em; text-transform:uppercase;
   padding:12px 32px; border-radius:100px;
-  background:none; border:1px solid rgba(100,160,230,.1);
-  color:#4e6480; cursor:pointer; transition:border-color .25s, color .25s;
+  background:none; border:1px solid rgba(112,172,235,.1);
+  color:#607a96; cursor:pointer; transition:border-color .25s, color .25s;
 }
-.btn-home:hover { border-color:rgba(107,159,212,.2); color:#9bb4d4; }
+.btn-home:hover { border-color:rgba(118,168,220,.2); color:#adc4df; }
 
 /* ═══════ CUSTOM BREATH SCREEN ═══════ */
 #screen-custom { gap:0; }
 .custom-title {
   font-family:'Raleway', sans-serif; font-weight:300;
   font-size:1.7rem; letter-spacing:.06em;
-  color:rgba(155,180,212,.82); text-align:center; margin-bottom:6px;
+  color:rgba(178,202,232,.90); text-align:center; margin-bottom:6px;
   opacity:0; animation:fadeUp .7s ease .1s forwards;
 }
 .custom-sub {
-  font-size:.86rem; color:#26344a; text-align:center;
+  font-size:.86rem; color:#3a4f6a; text-align:center;
   letter-spacing:.02em; margin-bottom:32px;
   opacity:0; animation:fadeUp .7s ease .2s forwards;
 }
@@ -457,46 +470,46 @@ body {
 }
 .custom-phase-row {
   display:flex; align-items:center; justify-content:space-between;
-  background:rgba(107,159,212,.04); border:1px solid rgba(107,159,212,.1);
+  background:rgba(118,168,220,.04); border:1px solid rgba(118,168,220,.1);
   border-radius:14px; padding:12px 16px;
 }
 .custom-phase-label {
-  font-size:.88rem; letter-spacing:.06em; color:#4e6480; min-width:60px;
+  font-size:.88rem; letter-spacing:.06em; color:#607a96; min-width:60px;
 }
 .custom-phase-label small {
-  display:block; font-size:.72rem; color:#26344a; margin-top:1px; letter-spacing:.03em;
+  display:block; font-size:.72rem; color:#3a4f6a; margin-top:1px; letter-spacing:.03em;
 }
 .custom-stepper {
   display:flex; align-items:center; gap:0;
-  background:rgba(107,159,212,.06); border:1px solid rgba(107,159,212,.12);
+  background:rgba(118,168,220,.06); border:1px solid rgba(118,168,220,.12);
   border-radius:10px; overflow:hidden;
 }
 .custom-step-btn {
   width:34px; height:34px; background:none; border:none; cursor:pointer;
-  color:#4e6480; font-size:1.1rem;
+  color:#607a96; font-size:1.1rem;
   display:flex; align-items:center; justify-content:center;
   transition:background .2s, color .2s;
 }
-.custom-step-btn:hover  { background:rgba(107,159,212,.1); color:#8ab8f0; }
-.custom-step-btn:active { background:rgba(107,159,212,.18); }
+.custom-step-btn:hover  { background:rgba(118,168,220,.1); color:#9ac6f5; }
+.custom-step-btn:active { background:rgba(118,168,220,.18); }
 .custom-step-btn:disabled { opacity:.25; cursor:not-allowed; }
 .custom-step-val {
   font-family:'Raleway', sans-serif; font-weight:300;
-  font-size:1rem; letter-spacing:.04em; color:#9bb4d4;
+  font-size:1rem; letter-spacing:.04em; color:#adc4df;
   min-width:42px; text-align:center;
 }
-.custom-zero-hint { font-size:.7rem; color:#26344a; letter-spacing:.03em; }
+.custom-zero-hint { font-size:.7rem; color:#3a4f6a; letter-spacing:.03em; }
 .custom-actions {
   display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:28px;
   opacity:0; animation:fadeUp .7s ease .45s forwards;
 }
 .custom-total-time {
-  font-size:.76rem; letter-spacing:.06em; color:#26344a; opacity:.65;
+  font-size:.76rem; letter-spacing:.06em; color:#3a4f6a; opacity:.65;
 }
 /* 직접 할래요 링크 */
 .mood-custom-link {
   margin-top:22px;
-  font-size:.84rem; letter-spacing:.05em; color:#26344a;
+  font-size:.84rem; letter-spacing:.05em; color:#3a4f6a;
   text-decoration:underline; text-underline-offset:3px;
   cursor:pointer; background:none; border:none;
   font-family:'Noto Sans KR', sans-serif; font-weight:300;
@@ -538,25 +551,25 @@ body {
 
 <!-- INTRO -->
 <div class="screen visible" id="screen-intro">
-  <h1 class="intro-headline">지금 어떤 기분이신가요?</h1>
-  <p class="intro-sub">아래 감정을 선택하면 맞춤 호흡법을 안내해 드려요</p>
+  <h1 class="intro-headline">지금 어떤 기분이세요?</h1>
+  <p class="intro-sub">감정을 선택하면 맞는 호흡법을 안내해 드려요</p>
   <div class="moods">
 
     <div class="mood-card" role="button" tabindex="0" data-mood="anxious" aria-label="불안해요">
       <!-- 불안: 눈썹이 올라가고 입이 살짝 열린 긴장된 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(118,168,220,.5)" stroke-width="1.2"/>
         <!-- 왼쪽 눈썹 — 안쪽이 올라감 -->
-        <path d="M11 13.5 Q13.5 11.5 16 13" stroke="rgba(107,159,212,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M11 13.5 Q13.5 11.5 16 13" stroke="rgba(118,168,220,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
         <!-- 오른쪽 눈썹 — 안쪽이 올라감 -->
-        <path d="M24 13 Q26.5 11.5 29 13.5" stroke="rgba(107,159,212,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M24 13 Q26.5 11.5 29 13.5" stroke="rgba(118,168,220,.75)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
         <!-- 눈 — 약간 크게 뜬 -->
-        <ellipse cx="14.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(107,159,212,.7)" stroke-width="1.2" fill="none"/>
-        <circle cx="14.5" cy="18" r="1" fill="rgba(107,159,212,.7)"/>
-        <ellipse cx="25.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(107,159,212,.7)" stroke-width="1.2" fill="none"/>
-        <circle cx="25.5" cy="18" r="1" fill="rgba(107,159,212,.7)"/>
+        <ellipse cx="14.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(118,168,220,.7)" stroke-width="1.2" fill="none"/>
+        <circle cx="14.5" cy="18" r="1" fill="rgba(118,168,220,.7)"/>
+        <ellipse cx="25.5" cy="18" rx="2.2" ry="2.5" stroke="rgba(118,168,220,.7)" stroke-width="1.2" fill="none"/>
+        <circle cx="25.5" cy="18" r="1" fill="rgba(118,168,220,.7)"/>
         <!-- 입 — 살짝 벌어진 긴장된 모양 -->
-        <path d="M15 27 Q17.5 25 20 27 Q22.5 25 25 27" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <path d="M15 27 Q17.5 25 20 27 Q22.5 25 25 27" stroke="rgba(118,168,220,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
       </svg>
       <span class="mood-label">불안해요</span>
     </div>
@@ -564,17 +577,17 @@ body {
     <div class="mood-card" role="button" tabindex="0" data-mood="panic" aria-label="공황이에요">
       <!-- 공황: 눈이 크게 벌어지고 입이 벌어진 공포 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(118,168,220,.5)" stroke-width="1.2"/>
         <!-- 눈썹 — 양쪽 다 위로 강하게 올라감 -->
-        <path d="M10.5 12 Q13.5 9.5 16.5 11.5" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <path d="M23.5 11.5 Q26.5 9.5 29.5 12" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M10.5 12 Q13.5 9.5 16.5 11.5" stroke="rgba(118,168,220,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M23.5 11.5 Q26.5 9.5 29.5 12" stroke="rgba(118,168,220,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
         <!-- 눈 — 크게 벌어진 원형 -->
-        <circle cx="14.5" cy="18" r="3" stroke="rgba(107,159,212,.75)" stroke-width="1.3" fill="none"/>
-        <circle cx="14.5" cy="18" r="1.3" fill="rgba(107,159,212,.8)"/>
-        <circle cx="25.5" cy="18" r="3" stroke="rgba(107,159,212,.75)" stroke-width="1.3" fill="none"/>
-        <circle cx="25.5" cy="18" r="1.3" fill="rgba(107,159,212,.8)"/>
+        <circle cx="14.5" cy="18" r="3" stroke="rgba(118,168,220,.75)" stroke-width="1.3" fill="none"/>
+        <circle cx="14.5" cy="18" r="1.3" fill="rgba(118,168,220,.8)"/>
+        <circle cx="25.5" cy="18" r="3" stroke="rgba(118,168,220,.75)" stroke-width="1.3" fill="none"/>
+        <circle cx="25.5" cy="18" r="1.3" fill="rgba(118,168,220,.8)"/>
         <!-- 입 — 크게 벌어진 타원 -->
-        <ellipse cx="20" cy="29" rx="4.5" ry="3.5" stroke="rgba(107,159,212,.65)" stroke-width="1.3" fill="none"/>
+        <ellipse cx="20" cy="29" rx="4.5" ry="3.5" stroke="rgba(118,168,220,.65)" stroke-width="1.3" fill="none"/>
       </svg>
       <span class="mood-label">공황이에요</span>
     </div>
@@ -582,20 +595,20 @@ body {
     <div class="mood-card" role="button" tabindex="0" data-mood="tense" aria-label="긴장돼요">
       <!-- 긴장: 미간을 찌푸리고 입을 꽉 다문 표정 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(118,168,220,.5)" stroke-width="1.2"/>
         <!-- 미간 주름 -->
-        <path d="M17.5 12.5 L19 15" stroke="rgba(107,159,212,.55)" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M22.5 12.5 L21 15" stroke="rgba(107,159,212,.55)" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M17.5 12.5 L19 15" stroke="rgba(118,168,220,.55)" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M22.5 12.5 L21 15" stroke="rgba(118,168,220,.55)" stroke-width="1.1" stroke-linecap="round"/>
         <!-- 눈썹 — 강하게 V자로 찌푸림 -->
-        <path d="M10.5 14.5 Q13.5 12 17 14" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <path d="M23 14 Q26.5 12 29.5 14.5" stroke="rgba(107,159,212,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M10.5 14.5 Q13.5 12 17 14" stroke="rgba(118,168,220,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M23 14 Q26.5 12 29.5 14.5" stroke="rgba(118,168,220,.8)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
         <!-- 눈 — 약간 좁게 뜬 -->
-        <path d="M11.5 19.5 Q14.5 17.5 17.5 19.5" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
-        <path d="M22.5 19.5 Q25.5 17.5 28.5 19.5" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <path d="M11.5 19.5 Q14.5 17.5 17.5 19.5" stroke="rgba(118,168,220,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(118,168,220,.65)"/>
+        <path d="M22.5 19.5 Q25.5 17.5 28.5 19.5" stroke="rgba(118,168,220,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(118,168,220,.65)"/>
         <!-- 입 — 꽉 다문 일자 -->
-        <line x1="15" y1="28" x2="25" y2="28" stroke="rgba(107,159,212,.6)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="15" y1="28" x2="25" y2="28" stroke="rgba(118,168,220,.6)" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
       <span class="mood-label">긴장돼요</span>
     </div>
@@ -603,19 +616,19 @@ body {
     <div class="mood-card" role="button" tabindex="0" data-mood="sad" aria-label="우울해요">
       <!-- 우울: 눈꼬리 처지고 입꼬리 내려간 슬픈 표정 + 눈물 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(118,168,220,.5)" stroke-width="1.2"/>
         <!-- 눈썹 — 안쪽이 올라가고 바깥쪽 처짐 (슬픔) -->
-        <path d="M11 15 Q13.5 13 16 14.5" stroke="rgba(107,159,212,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-        <path d="M24 14.5 Q26.5 13 29 15" stroke="rgba(107,159,212,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M11 15 Q13.5 13 16 14.5" stroke="rgba(118,168,220,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+        <path d="M24 14.5 Q26.5 13 29 15" stroke="rgba(118,168,220,.7)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
         <!-- 눈 — 반달 모양으로 처진 -->
-        <path d="M11.5 19 Q14.5 21.5 17.5 19" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
-        <path d="M22.5 19 Q25.5 21.5 28.5 19" stroke="rgba(107,159,212,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(107,159,212,.65)"/>
+        <path d="M11.5 19 Q14.5 21.5 17.5 19" stroke="rgba(118,168,220,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="14.5" cy="19.5" r="1.1" fill="rgba(118,168,220,.65)"/>
+        <path d="M22.5 19 Q25.5 21.5 28.5 19" stroke="rgba(118,168,220,.7)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <circle cx="25.5" cy="19.5" r="1.1" fill="rgba(118,168,220,.65)"/>
         <!-- 눈물 -->
-        <path d="M16 22 Q15.5 24.5 16.5 25.5 Q17.5 26.5 18 25 Q17.5 23.5 16 22" fill="rgba(107,159,212,.35)"/>
+        <path d="M16 22 Q15.5 24.5 16.5 25.5 Q17.5 26.5 18 25 Q17.5 23.5 16 22" fill="rgba(118,168,220,.35)"/>
         <!-- 입꼬리 내려간 슬픈 입 -->
-        <path d="M14 29.5 Q17 27 20 28.5 Q23 27 26 29.5" stroke="rgba(107,159,212,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+        <path d="M14 29.5 Q17 27 20 28.5 Q23 27 26 29.5" stroke="rgba(118,168,220,.6)" stroke-width="1.3" stroke-linecap="round" fill="none"/>
       </svg>
       <span class="mood-label">우울해요</span>
     </div>
@@ -623,17 +636,17 @@ body {
     <div class="mood-card" role="button" tabindex="0" data-mood="numb" aria-label="멍해요">
       <!-- 멍함: 초점 없는 눈, 무표정한 얼굴 -->
       <svg viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="17" stroke="rgba(107,159,212,.5)" stroke-width="1.2"/>
+        <circle cx="20" cy="20" r="17" stroke="rgba(118,168,220,.5)" stroke-width="1.2"/>
         <!-- 눈썹 — 수평, 표정 없음 -->
-        <line x1="11.5" y1="14" x2="17" y2="14" stroke="rgba(107,159,212,.45)" stroke-width="1.3" stroke-linecap="round"/>
-        <line x1="23" y1="14" x2="28.5" y2="14" stroke="rgba(107,159,212,.45)" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="11.5" y1="14" x2="17" y2="14" stroke="rgba(118,168,220,.45)" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="23" y1="14" x2="28.5" y2="14" stroke="rgba(118,168,220,.45)" stroke-width="1.3" stroke-linecap="round"/>
         <!-- 눈 — 초점이 흐린 동공 (동공이 중심에서 약간 벗어남) -->
-        <circle cx="14.5" cy="19" r="2.8" stroke="rgba(107,159,212,.45)" stroke-width="1.1" fill="none"/>
-        <circle cx="15.2" cy="19.5" r="1.1" fill="rgba(107,159,212,.4)"/>
-        <circle cx="25.5" cy="19" r="2.8" stroke="rgba(107,159,212,.45)" stroke-width="1.1" fill="none"/>
-        <circle cx="26.2" cy="19.5" r="1.1" fill="rgba(107,159,212,.4)"/>
+        <circle cx="14.5" cy="19" r="2.8" stroke="rgba(118,168,220,.45)" stroke-width="1.1" fill="none"/>
+        <circle cx="15.2" cy="19.5" r="1.1" fill="rgba(118,168,220,.4)"/>
+        <circle cx="25.5" cy="19" r="2.8" stroke="rgba(118,168,220,.45)" stroke-width="1.1" fill="none"/>
+        <circle cx="26.2" cy="19.5" r="1.1" fill="rgba(118,168,220,.4)"/>
         <!-- 입 — 완전 무표정 일자, 얇게 -->
-        <line x1="15.5" y1="28" x2="24.5" y2="28" stroke="rgba(107,159,212,.4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="15.5" y1="28" x2="24.5" y2="28" stroke="rgba(118,168,220,.4)" stroke-width="1.2" stroke-linecap="round"/>
       </svg>
       <span class="mood-label">멍해요</span>
     </div>
@@ -671,7 +684,7 @@ body {
     </div>
   </div>
 
-  <p class="breath-phrase" id="breath-phrase">준비가 되면 시작 버튼을 눌러주세요</p>
+  <p class="breath-phrase" id="breath-phrase">준비되면 시작을 눌러주세요</p>
 
   <div class="breath-controls">
     <div class="cycle-row" id="cycle-row">
@@ -698,7 +711,7 @@ body {
 <div class="screen hidden" id="screen-custom">
   <button class="breath-back" id="btn-custom-back">← 돌아가기</button>
   <h2 class="custom-title">직접 설정하기</h2>
-  <p class="custom-sub">각 단계의 시간을 설정하고 바로 시작하세요</p>
+  <p class="custom-sub">각 단계의 시간을 설정하고 시작하세요</p>
   <div class="custom-phases">
 
     <div class="custom-phase-row">
@@ -759,7 +772,7 @@ body {
   <span class="done-glyph">◎</span>
   <h2 class="done-title">잘 하셨어요</h2>
   <div class="done-hr"></div>
-  <p class="done-sub">모든 호흡을 마쳤습니다.<br/>몸과 마음이 조금 더 편안해지셨기를 바랍니다.</p>
+  <p class="done-sub">모든 호흡을 마쳤어요.<br/>몸과 마음이 조금 더 편안해지셨으면 해요.</p>
   <div class="done-stats" id="done-stats"></div>
   <div class="done-btns">
     <button class="btn-again" id="btn-again">한 번 더</button>
@@ -772,54 +785,44 @@ body {
    METHODS
 ══════════════════════════════ */
 const METHODS = {
-  anxious: {
-    mood: '불안해요', name: '4-7-8 Breathing',
-    desc: '불안을 가라앉히는 데 효과적인 호흡법이에요.\n숫자를 세며 천천히 따라해 보세요.',
-    phases: [
-      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '코로 천천히 들이쉬세요' },
-      { label: '참기',     dur: 7, type: 'hold',   phrase: '숨을 부드럽게 참아주세요' },
-      { label: '내쉬기',   dur: 8, type: 'exhale', phrase: '입으로 길게, 천천히 내쉬세요' },
-    ]
-  },
-  panic: {
-    mood: '공황이에요', name: '4-4-6 Breathing',
-    desc: '짧게 들이쉬고 길게 내쉬어요.\n내쉬는 숨이 길수록 몸이 빠르게 안정돼요.',
-    phases: [
-      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '코로 천천히 들이쉬세요' },
-      { label: '참기',     dur: 4, type: 'hold',   phrase: '잠깐 머물러 있어요' },
-      { label: '내쉬기',   dur: 6, type: 'exhale', phrase: '입으로 길게, 끝까지 내보내세요' },
-    ]
-  },
-  tense: {
-    mood: '긴장돼요', name: 'Box Breathing',
-    desc: '어깨 힘을 빼고 시작해 보세요.\n균형 잡힌 호흡이 긴장을 풀어줘요.',
-    phases: [
-      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '어깨를 내리고 들이쉬세요' },
-      { label: '참기', dur: 4, type: 'hold',   phrase: '잠깐 머물러 있어요' },
-      { label: '내쉬기',   dur: 4, type: 'exhale', phrase: '긴장을 흘려 보내세요' },
-      { label: '참기', dur: 4, type: 'hold2',  phrase: '비워진 채로, 기다리세요' },
-    ]
-  },
-  sad: {
-    mood: '우울해요', name: 'Activating Breath',
-    desc: '배로 깊게, 리드미컬하게 호흡해요.\n규칙적인 리듬이 무거운 기분을 조금씩 깨워줘요.',
-    phases: [
-      { label: '들이쉬기', dur: 4, type: 'inhale', phrase: '배를 부풀리며 깊게 들이쉬세요' },
-      { label: '참기',     dur: 2, type: 'hold',   phrase: '잠깐 머물러요' },
-      { label: '내쉬기',   dur: 4, type: 'exhale', phrase: '천천히, 고르게 내보내세요' },
-    ]
-  },
-  numb: {
-    mood: '멍해요', name: 'Physiological Sigh',
-    desc: '이중 흡입 후 길게 내쉬는 호흡법이에요.\n멍한 의식을 빠르게 되돌리는 데 효과적이에요.',
-    phases: [
-      { label: '들이쉬기', dur: 2, type: 'inhale', phrase: '코로 깊게 들이쉬세요' },
-      { label: '더 들이쉬기', dur: 1, type: 'hold',  phrase: '짧게 한 번 더 들이마셔요' },
-      { label: '내쉬기',   dur: 6, type: 'exhale', phrase: '입으로 길게, 천천히 내보내세요' },
-    ]
-  },
+  anxious:{mood:'불안해요',name:'4-7-8 Breathing',
+    desc:'불안을 가라앉히는 데 효과적인 호흡법이에요.\n숫자를 세며 천천히 따라오세요.',
+    phases:[
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 깊게 들이쉬세요'},
+      {label:'참기',    dur:7,type:'hold',  phrase:'그대로 부드럽게 참아요'},
+      {label:'내쉬기',  dur:8,type:'exhale',phrase:'입으로 길고 천천히 내쉬세요'},
+    ]},
+  panic:{mood:'공황이에요',name:'4-4-6 Breathing',
+    desc:'짧게 들이쉬고 길게 내쉬어요.\n내쉬는 숨이 길수록 몸이 빠르게 안정돼요.',
+    phases:[
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'코로 천천히 들이쉬세요'},
+      {label:'참기',    dur:4,type:'hold',  phrase:'그대로 잠깐만요'},
+      {label:'내쉬기',  dur:6,type:'exhale',phrase:'입으로 부드럽게 내보내세요'},
+    ]},
+  tense:{mood:'긴장돼요',name:'Box Breathing',
+    desc:'어깨 힘을 빼고 시작해 보세요.\n균형 잡힌 호흡이 긴장을 풀어줘요.',
+    phases:[
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'어깨를 내리고 들이쉬세요'},
+      {label:'참기',    dur:4,type:'hold',  phrase:'그대로 가만히요'},
+      {label:'내쉬기',  dur:4,type:'exhale',phrase:'코로 고르게 내쉬세요'},
+      {label:'참기',    dur:4,type:'hold2', phrase:'비운 채로, 잠시'},
+    ]},
+  sad:{mood:'우울해요',name:'Activating Breath',
+    desc:'배로 깊게, 리드미컬하게 호흡해요.\n규칙적인 리듬이 무거운 기분을 조금씩 깨워줘요.',
+    phases:[
+      {label:'들이쉬기',dur:4,type:'inhale',phrase:'배를 부풀리며 들이쉬세요'},
+      {label:'참기',    dur:2,type:'hold',  phrase:'잠깐 머물러요'},
+      {label:'내쉬기',  dur:4,type:'exhale',phrase:'코로 고르게 내쉬세요'},
+    ]},
+  numb:{mood:'멍해요',name:'Physiological Sigh',
+    desc:'이중 흡입 후 길게 내쉬는 호흡법이에요.\n멍한 의식을 빠르게 되돌리는 데 효과적이에요.',
+    phases:[
+      {label:'들이쉬기',dur:2,type:'inhale',phrase:'코로 깊게 들이쉬세요'},
+      {label:'한 번 더',dur:1,type:'inhale2',phrase:'짧게 한 번 더 들이쉬세요'},
+      {label:'내쉬기',  dur:6,type:'exhale',phrase:'입으로 길게 내보내세요'},
+    ]},
 };
-   
+
 const SCALE_MAX  = 1.28;
 const SCALE_MIN  = 0.76;
 const SCALE_REST = 1.00;
@@ -831,7 +834,8 @@ const CIRC       = 301.6;
    메인 스레드 블로킹 없음
 ══════════════════════════════ */
 let audioCtx=null, masterGain=null, reverbNode=null, reverbReady=null, muted=false;
-let volume = parseFloat(localStorage.getItem('breathVolume') || '0.5');
+let volume = 0.5;
+try { volume = parseFloat(localStorage.getItem('breathVolume') || '0.5'); } catch(e){}
 
 function initAudio(){
   if(audioCtx){ if(audioCtx.state==='suspended') audioCtx.resume(); return; }
@@ -839,11 +843,11 @@ function initAudio(){
 
   /* [수정] DynamicsCompressor — 여러 음이 겹칠 때 클리핑 방지 리미터 역할 */
   const compressor = audioCtx.createDynamicsCompressor();
-  compressor.threshold.value = -14;
-  compressor.knee.value      = 6;
-  compressor.ratio.value     = 8;
-  compressor.attack.value    = 0.003;
-  compressor.release.value   = 0.25;
+  compressor.threshold.value = -18;
+  compressor.knee.value      = 12;
+  compressor.ratio.value     = 6;
+  compressor.attack.value    = 0.008;  /* 빠른 transient도 잡도록 늦춤 */
+  compressor.release.value   = 0.35;
 
   /* masterGain: 저장된 볼륨 적용 (기본 0.4 — 슬라이더로 조절 가능) */
   masterGain = audioCtx.createGain();
@@ -868,6 +872,10 @@ function initAudio(){
   reverbReady=Promise.resolve();
   if(audioCtx.state==='suspended') audioCtx.resume();
 }
+/* 모바일에서 audioCtx.currentTime과 실제 스케줄 사이의 지연을 흡수하는 여유값.
+   이 값보다 짧은 간격으로 스케줄하면 과거 시점에 이벤트가 걸려 팝 발생. */
+const SCHED_OFFSET = 0.06;
+
 function voice(freq, t0, vol, dur){
   const osc = audioCtx.createOscillator();
   const env = audioCtx.createGain();
@@ -875,35 +883,25 @@ function voice(freq, t0, vol, dur){
   osc.type = 'sine';
   osc.frequency.setValueAtTime(freq, t0);
 
-  /* ── ADSR — 틱 노이즈 완전 제거 3원칙 ──────────────────────────
-     1) gain을 절대 0으로 만들지 않는다 (0 → 클릭).
-        osc.start보다 충분히 앞서 0.0001로 시작.
-     2) linearRamp 사용 금지 — 모든 구간 exponentialRamp.
-        exponential은 0에 수렴하지만 실제로 닿지 않아 click-free.
-     3) osc.stop은 gain이 완전히 0에 가까워진 뒤 여유를 두고 호출.
-  ─────────────────────────────────────────────────────────────── */
+  /* EPSILON을 t0보다 한 샘플 앞에 심어두면 항상 미래 시점이 보장됨 */
   const EPSILON  = 0.00001;
-  const tStart   = t0;
+  const tPreroll = Math.max(audioCtx.currentTime + 0.001, t0 - 0.01);
   const tAttack  = t0 + 0.15;
   const tDecay   = t0 + dur * 0.45;
   const tRelease = t0 + dur;
-  const tStop    = t0 + dur + 0.25;   /* release 후 충분한 tail */
+  const tStop    = t0 + dur + 0.30;
 
-  env.gain.setValueAtTime(EPSILON, tStart);
-  env.gain.exponentialRampToValueAtTime(vol,       tAttack);   /* attack  */
-  env.gain.exponentialRampToValueAtTime(vol * 0.4, tDecay);    /* decay   */
-  env.gain.exponentialRampToValueAtTime(EPSILON,   tRelease);  /* release */
+  env.gain.setValueAtTime(EPSILON, tPreroll);
+  env.gain.exponentialRampToValueAtTime(vol,       tAttack);
+  env.gain.exponentialRampToValueAtTime(vol * 0.4, tDecay);
+  env.gain.exponentialRampToValueAtTime(EPSILON,   tRelease);
 
-  /* dry path */
   const dry = audioCtx.createGain();
   dry.gain.value = 0.40;
   osc.connect(env);
   env.connect(dry);
   dry.connect(masterGain);
 
-  /* wet(reverb) path — reverbReady 후 동적 연결 대신
-     reverb가 있으면 즉시 연결, 없으면 그냥 dry만 사용.
-     동적 그래프 변경(then 내부 connect)이 글리치의 주범이었음. */
   if(reverbNode){
     const wet = audioCtx.createGain();
     wet.gain.value = 0.55;
@@ -911,10 +909,10 @@ function voice(freq, t0, vol, dur){
     wet.connect(reverbNode);
   }
 
-  osc.start(tStart);
+  osc.start(t0);
   osc.stop(tStop);
 }
-const CHORDS={inhale:[196,294,440],hold:[220,330,494],exhale:[130,196,330],hold2:[110,165,247]};
+const CHORDS={inhale:[196,294,440],inhale2:[220,330,494],hold:[220,330,494],exhale:[130,196,330],hold2:[110,165,247]};
 
 /* phaseDur: 해당 구간의 실제 길이(초)
    noteDur: 음표 지속 시간을 구간 길이에 맞게 dynamic 조절
@@ -934,14 +932,15 @@ function freqGain(freq){
 
 function playTone(type, phaseDur){
   if(muted||!audioCtx) return;
-  const now=audioCtx.currentTime;
+  const t0 = audioCtx.currentTime + SCHED_OFFSET;
   const noteDur = calcNoteDur(phaseDur);
-  (CHORDS[type]||CHORDS.inhale).forEach((f,i)=>voice(f,now+i*0.07, 0.032*freqGain(f), noteDur));
+  (CHORDS[type]||CHORDS.inhale).forEach((f,i)=>voice(f, t0+i*0.07, 0.032*freqGain(f), noteDur));
 }
 function playChord(){
   if(muted||!audioCtx) return;
-  const now=audioCtx.currentTime;
-  [130,196,294,330,392].forEach((f,i)=>voice(f,now+i*0.11, 0.025*freqGain(f), 3.2));
+  const t0 = audioCtx.currentTime + SCHED_OFFSET;
+  /* 완료음: vol을 낮추고 간격을 넓혀 동시 attack 쏠림 방지 */
+  [130,196,294,330,392].forEach((f,i)=>voice(f, t0+i*0.14, 0.020*freqGain(f), 3.5));
 }
 /* ── 사운드 패널 이벤트 ── */
 function applySoundUI(){
@@ -1087,13 +1086,13 @@ document.addEventListener('keydown',e=>{
     else if(running)      pauseBreathing();
     else                  resumeBreathing();
   }
-  if(e.key==='Escape'){running=false;paused=false;if(rafId)cancelAnimationFrame(rafId);showScreen('screen-intro');}
+  if(e.key==='Escape'){ goBack(); }
 });
 
 /* 초기화 */
 function initBreath(){
   elTag.textContent=method.mood; elName.textContent=method.name; elDesc.textContent=method.desc;
-  setPhrase('준비가 되면 시작 버튼을 눌러주세요',true);
+  setPhrase('준비되면 시작을 눌러주세요',true);
   elCount.textContent='—'; elPhase.textContent='준비';
   elBtn.textContent='시작하기'; elBtn.disabled=false;
   elCycRow.style.opacity='1'; elCycRow.style.pointerEvents='auto';
@@ -1127,33 +1126,40 @@ function setPhrase(txt,instant){
 ══════════════════════════════════════════ */
 function applyPhaseVisual(phase){
   const dur=phase.dur;
-  if(phase.type==='inhale'){
-    elBody.style.transition=`transform ${dur}s cubic-bezier(0.37,0,0.63,1)`;
-    elBody.style.transform =`scale(${SCALE_MAX})`;
-    elGlow.style.transition=`opacity ${dur}s ease-in`;
-    elGlow.style.opacity   ='0.80';
-    rippleWrap.style.opacity='1';
-  } else if(phase.type==='exhale'){
-    elBody.style.transition=`transform ${dur}s cubic-bezier(0.37,0,0.63,1)`;
-    elBody.style.transform =`scale(${SCALE_MIN})`;
-    elGlow.style.transition=`opacity ${dur}s ease-out`;
-    elGlow.style.opacity   ='0.04';
-    rippleWrap.style.opacity='0';
-  } else if(phase.type==='hold'){
-    /* 이미 MAX에 있음 — transition 없이 고정 */
-    elBody.style.transition='none';
-    elBody.style.transform =`scale(${SCALE_MAX})`;
-    elGlow.style.transition='opacity 0.5s ease';
-    elGlow.style.opacity   ='0.86';
-    rippleWrap.style.opacity='0';
-  } else {
-    /* hold2: 이미 MIN에 있음 */
-    elBody.style.transition='none';
-    elBody.style.transform =`scale(${SCALE_MIN})`;
-    elGlow.style.transition='opacity 0.5s ease';
-    elGlow.style.opacity   ='0.03';
-    rippleWrap.style.opacity='0';
-  }
+  /* animation 제거 전 현재 computed transform을 inline에 고정 — 끊김 방지 */
+  const computed = getComputedStyle(elBody).transform;
+  elBody.style.transform = computed;
+  elBody.classList.remove('hold-pulse-max','hold-pulse-min');
+  /* 고정 직후 한 프레임 대기 후 새 transition 적용 */
+  requestAnimationFrame(()=>{
+    if(phase.type==='inhale'||phase.type==='inhale2'){
+      elBody.style.transition=`transform ${dur}s cubic-bezier(0.37,0,0.63,1)`;
+      elBody.style.transform =`scale(${SCALE_MAX})`;
+      elGlow.style.transition=`opacity ${dur}s ease-in`;
+      elGlow.style.opacity   ='0.80';
+      rippleWrap.style.opacity='1';
+    } else if(phase.type==='exhale'){
+      elBody.style.transition=`transform ${dur}s cubic-bezier(0.37,0,0.63,1)`;
+      elBody.style.transform =`scale(${SCALE_MIN})`;
+      elGlow.style.transition=`opacity ${Math.max(dur*1.4, dur+1.2)}s ease-out`;
+      elGlow.style.opacity   ='0.04';
+      rippleWrap.style.opacity='0';
+    } else if(phase.type==='hold'){
+      elBody.style.transition=`transform 0.3s ease-out`;
+      elBody.style.transform =`scale(${SCALE_MAX})`;
+      elGlow.style.transition='opacity 0.5s ease';
+      elGlow.style.opacity   ='0.86';
+      rippleWrap.style.opacity='0';
+      setTimeout(()=>elBody.classList.add('hold-pulse-max'), 300);
+    } else {
+      elBody.style.transition=`transform 0.3s ease-out`;
+      elBody.style.transform =`scale(${SCALE_MIN})`;
+      elGlow.style.transition='opacity 0.5s ease';
+      elGlow.style.opacity   ='0.03';
+      rippleWrap.style.opacity='0';
+      setTimeout(()=>elBody.classList.add('hold-pulse-min'), 300);
+    }
+  });
 }
 
 function startBreathing(){
@@ -1175,13 +1181,14 @@ function pauseBreathing(){
   elGlow.style.transition='none'; elGlow.style.opacity=curO;
   rippleWrap.style.opacity='0';
   elBtn.textContent='재개하기';
-  setPhrase('일시정지 — 재개하려면 버튼을 누르세요',true);
+  setPhrase('잠시 멈춤 — 재개하려면 버튼을 눌러주세요',true);
 }
 function stopBreathing(){
   running=false; paused=false;
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
   /* 원 초기 상태로 복귀 */
   elBody.style.transition='transform 1s ease-out'; elBody.style.transform=`scale(${SCALE_REST})`;
+  elBody.classList.remove('hold-pulse-max','hold-pulse-min');
   elGlow.style.transition='opacity 1s ease-out';   elGlow.style.opacity='0';
   rippleWrap.style.opacity='0';
   setRing(0);
@@ -1191,35 +1198,42 @@ function stopBreathing(){
   elCycRow.style.opacity='1'; elCycRow.style.pointerEvents='auto';
   elCycProg.textContent='';
   elCount.textContent='—'; elPhase.textContent='준비';
-  setPhrase('준비가 되면 시작 버튼을 눌러주세요',false);
+  setPhrase('준비되면 시작을 눌러주세요',false);
   method.phases.forEach(p=>{p._active=false;});
   cycle=0; phaseIdx=0;
 }
 function resumeBreathing(){
   if(!paused) return;
-  const drift=performance.now()-pausedAt;
-  phaseStartTs+=drift; pausedAt=null; paused=false; running=true;
-  const phase=method.phases[phaseIdx];
-  setPhrase(phase.phrase,false);
-  /* 남은 시간으로 transition 재계산 */
-  const elapsed=(performance.now()-pausedAt+drift)/1000; // actually phaseStartTs already shifted
-  const tDone=Math.min((performance.now()-phaseStartTs-drift)/1000/phase.dur,1);
-  const remaining=Math.max(0.1,phase.dur*(1-tDone));
-  if(phase.type==='inhale'){
-    elBody.style.transition=`transform ${remaining}s cubic-bezier(0.37,0,0.63,1)`;
-    elBody.style.transform =`scale(${SCALE_MAX})`;
-    elGlow.style.transition=`opacity ${remaining}s ease-in`;
-    elGlow.style.opacity   ='0.80';
-    rippleWrap.style.opacity='1';
-  } else if(phase.type==='exhale'){
+  const drift = performance.now() - pausedAt;
+  phaseStartTs += drift;
+  paused = false; running = true; pausedAt = null; /* null 이후엔 참조 없음 */
+  const phase = method.phases[phaseIdx];
+  /* 남은 비율로 transition 재계산 */
+  const tDone = Math.min((performance.now() - phaseStartTs) / (phase.dur * 1000), 1);
+  const remaining = Math.max(0.1, phase.dur * (1 - tDone));
+  if(phase.type==='inhale'||phase.type==='inhale2'){
     elBody.style.transition=`transform ${remaining}s cubic-bezier(0.37,0,0.63,1)`;
     elBody.style.transform =`scale(${SCALE_MIN})`;
     elGlow.style.transition=`opacity ${remaining}s ease-out`;
     elGlow.style.opacity   ='0.04';
   }
+  setPhrase(phase.phrase, false);
   elBtn.textContent='일시정지';
   showStopBtn(true);
   rafId=requestAnimationFrame(tickLoop);
+}
+
+/* 뒤로가기 — 진행 중이면 오디오 포함 정리 후 이동 */
+function goBack(){
+  if(running || paused) stopBreathing();
+  /* 이미 스케줄된 오디오 노드는 자연 소멸 — masterGain을 0으로 fade */
+  if(audioCtx && masterGain){
+    masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.08);
+    setTimeout(()=>{
+      if(!running) masterGain.gain.setTargetAtTime(muted?0:volume, audioCtx.currentTime, 0.08);
+    }, 400);
+  }
+  showScreen('screen-intro');
 }
 
 /* ══════════════════════════════════════════
@@ -1244,7 +1258,7 @@ function tickLoop(ts){
 
   /* 카운트다운 */
   if (t < 1) {
-    const rem = Math.max(1, Math.ceil(phase.dur * (1 - t)));
+    const rem = Math.max(0, Math.ceil(phase.dur * (1 - t)));
     if (elCount.textContent !== String(rem)) elCount.textContent = rem;
   }
 
@@ -1265,13 +1279,17 @@ function tickLoop(ts){
 function finishBreathing(){
   running=false; paused=false;
   if(rafId){cancelAnimationFrame(rafId);rafId=null;}
+  /* 화면 전환 전까지 버튼 완전 비활성 — 소리 중복 방지 */
+  elBtn.disabled=true; elBtn.textContent='완료';
+  showStopBtn(false);
   rippleWrap.style.opacity='0'; setRing(1);
-  elCount.textContent = '0';
+  elCount.textContent = '1';
   elPhase.textContent = '완료';
   setTimeout(() => { elCount.textContent = '✓'; }, 400);
-  setPhrase('모두 마쳤습니다. 수고하셨어요',false);
+  setPhrase('모두 마쳤어요. 수고하셨어요',false);
   elBody.style.transition=`transform 1.8s ease-out`;
   elBody.style.transform =`scale(${SCALE_REST})`;
+  elBody.classList.remove('hold-pulse-max','hold-pulse-min');
   elGlow.style.transition='opacity 1.8s ease-out';
   elGlow.style.opacity   ='0';
   playChord(); haptic([35,35,35]);
@@ -1294,12 +1312,23 @@ elBtn.addEventListener('click',()=>{
   else                  resumeBreathing();
 });
 elBtnStop.addEventListener('click', stopBreathing);
-$('btn-back').addEventListener('click',()=>{
-  running=false;paused=false;if(rafId)cancelAnimationFrame(rafId);showScreen('screen-intro');
-});
+$('btn-back').addEventListener('click', goBack);
 $('btn-again').addEventListener('click',()=>{initBreath();showScreen('screen-breath');});
 $('btn-home').addEventListener('click',()=>{
   running=false;paused=false;if(rafId)cancelAnimationFrame(rafId);showScreen('screen-intro');
+});
+
+/* kb-hint 클릭 — Space 힌트 → 시작/일시정지, Esc 힌트 → 뒤로가기 */
+document.querySelector('.kb-hint').addEventListener('click', e=>{
+  const kbd = e.target.closest('kbd');
+  if(!kbd) return;
+  if(kbd.textContent.trim()==='Space'){
+    if(!running&&!paused) startBreathing();
+    else if(running)      pauseBreathing();
+    else                  resumeBreathing();
+  } else if(kbd.textContent.trim()==='Esc'){
+    goBack();
+  }
 });
 /* ══════════════════════════════════════════
    직접 설정 화면
@@ -1377,13 +1406,13 @@ $('btn-custom-back').addEventListener('click', () => showScreen('screen-intro'))
 $('c-btn-start').addEventListener('click', () => {
   const phases = [];
   if(customPhases.inhale.val > 0)
-    phases.push({label:'들이쉬기', dur:customPhases.inhale.val, type:'inhale', phrase:'코로 천천히 들이쉬세요'});
+    phases.push({label:'들이쉬기', dur:customPhases.inhale.val, type:'inhale', phrase:'깊게 들이쉬세요'});
   if(customPhases.hold1.val > 0)
-    phases.push({label:'참기',    dur:customPhases.hold1.val,  type:'hold',   phrase:'숨을 부드럽게 참아주세요'});
+    phases.push({label:'참기',    dur:customPhases.hold1.val,  type:'hold',   phrase:'그대로 부드럽게 참아요'});
   if(customPhases.exhale.val > 0)
-    phases.push({label:'내쉬기',  dur:customPhases.exhale.val, type:'exhale', phrase:'입으로 길게 내쉬세요'});
+    phases.push({label:'내쉬기',  dur:customPhases.exhale.val, type:'exhale', phrase:'길게 내보내세요'});
   if(customPhases.hold2.val > 0)
-    phases.push({label:'참기',    dur:customPhases.hold2.val,  type:'hold2',  phrase:'비워진 채로, 기다리세요'});
+    phases.push({label:'참기',    dur:customPhases.hold2.val,  type:'hold2',  phrase:'비운 채로, 잠시'});
   if(phases.length === 0) return;
 
   method = {
@@ -1401,4 +1430,5 @@ $('c-btn-start').addEventListener('click', () => {
   showScreen('screen-breath');
 });
 
+</script>
 </script>
